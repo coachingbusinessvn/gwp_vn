@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #07121F; }
+  ::selection { background: #C9A668; color: #07121F; }
+  a { color: #D7B16E; text-decoration: none; }
+  a:hover { color: #E7D0A2; }
+  html { scroll-behavior: smooth; }
+  @keyframes mcFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes mcFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes mcFloatSlow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+  @keyframes mcSpin { to { transform: rotate(360deg); } }
+  .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22,0.68,0.24,1); will-change: opacity, transform; }
+  .rv.in { opacity: 1; transform: none; }
+  .rv-l { transform: translateX(-32px); }
+  .rv-r { transform: translateX(32px); }
+  .rv-l.in, .rv-r.in { transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { transition: none; } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div id="mc-root" style="font-family: Montserrat, system-ui, sans-serif; color: #D9E0E7; background: #07121F; overflow-x: hidden;">
+
+  <!-- ============ HEADER ============ -->
+  <header data-screen-label="Header" style="position: sticky; top: 0; z-index: 50; background: rgba(7,18,31,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,166,104,0.14);">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <a href="#top" style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 42px; height: 42px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid rgba(201,166,104,0.28);">
+          <image-slot id="mc-mark-header" src="assets/logo-mark.png" shape="circle" fit="contain" placeholder="Logo"></image-slot>
+        </div>
+        <div style="line-height: 1.05;">
+          <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 600; color: #F7F1E7;">GoWise Partner</div>
+          <div style="font-size: 8.5px; letter-spacing: 0.22em; color: #B98A48; font-weight: 600; margin-top: 2px;">STRATEGIC MANAGEMENT COACHING</div>
+        </div>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 30px;">
+        <a href="#gioi-thieu" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">Giới thiệu</a>
+        <a href="#doi-tuong" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">Đối tượng</a>
+        <a href="#chuong-trinh" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">Chương trình</a>
+        <a href="#cong-cu" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">Công cụ</a>
+        <a href="#giang-vien" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">Diễn giả</a>
+      </nav>
+      <a href="#dang-ky" style="background: linear-gradient(180deg, #D7B16E, #B98A48); color: #07121F; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 12px 22px;" style-hover="filter: brightness(1.06); transform: translateY(-1px);">Đăng ký ngay →</a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" data-screen-label="Hero" style="position: relative; background: radial-gradient(120% 90% at 78% 22%, #12304C 0%, #0D1B2A 42%, #07121F 100%);">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 84px 32px 64px; display: grid; grid-template-columns: 1.18fr 0.82fr; gap: 54px; align-items: center;">
+      <div style="animation: mcFade 0.8s ease both;">
+        <div style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(201,166,104,0.3); padding: 8px 16px; font-size: 11.5px; letter-spacing: 0.16em; color: #C9A668; font-weight: 600; margin-bottom: 26px;">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: #C9A668; display: inline-block;"></span>
+          CHƯƠNG TRÌNH ĐÀO TẠO HÀNH NGHỀ CHUYÊN SÂU
+        </div>
+        <h1 style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 60px; line-height: 1.07; color: #F7F1E7; letter-spacing: -0.01em;">Khai Vấn Quản Trị<br><span style="color: #E7D0A2;">Chuyên Nghiệp</span></h1>
+        <p style="font-size: 17px; line-height: 1.7; color: #D9E0E7; max-width: 560px; margin-top: 26px;">Chương trình đào tạo nghề <strong style="color: #F7F1E7; font-weight: 600;">Khai vấn quản trị</strong> bài bản đầu tiên tại Việt Nam dành cho Coach chuyên nghiệp, Tư vấn doanh nghiệp, tư vấn nội bộ, Lãnh đạo doanh nghiệp, người làm đào tạo, quản lý nhân sự.</p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 26px;">
+          <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.5; color: #D9E0E7;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A668" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Tập trung vào <strong style="color: #E7D0A2; font-weight: 600;">nhân sự đầu não</strong> doanh nghiệp</span>
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.5; color: #D9E0E7;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A668" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Giải quyết trực tiếp <strong style="color: #E7D0A2; font-weight: 600;">bài toán quản trị</strong> — không phải hiệu suất cá nhân</span>
+          </li>
+          <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.5; color: #D9E0E7;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A668" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Kết hợp <strong style="color: #E7D0A2; font-weight: 600;">tư duy tư vấn</strong> với <strong style="color: #E7D0A2; font-weight: 600;">chiều sâu khai vấn</strong> lãnh đạo</span>
+          </li>
+        </ul>
+        <div style="display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap;">
+          <a href="#dang-ky" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; padding: 17px 28px;" style-hover="filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,166,104,0.28);">ĐĂNG KÝ THAM GIA <span style="font-size: 15px;">→</span></a>
+          <a href="#chuong-trinh" style="display: inline-flex; align-items: center; background: transparent; color: #F7F1E7; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 17px 28px; border: 1px solid rgba(201,166,104,0.4);" style-hover="border-color: #C9A668; background: rgba(201,166,104,0.06);">XEM CHƯƠNG TRÌNH</a>
+        </div>
+      </div>
+
+      <!-- Coach portrait (cut-out) -->
+      <div style="animation: mcFade 0.9s ease 0.15s both; position: relative; min-width: 0; align-self: stretch; min-height: 560px; display: flex; align-items: flex-end; justify-content: center;">
+        <!-- radial glow -->
+        <div style="position: absolute; top: 6%; left: 50%; transform: translateX(-50%); width: 118%; height: 92%; background: radial-gradient(58% 62% at 50% 44%, rgba(201,166,104,0.24) 0%, rgba(201,166,104,0.09) 42%, rgba(7,18,31,0) 72%); pointer-events: none;"></div>
+        <!-- decorative ring -->
+        <div style="position: absolute; top: 8%; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; border: 1px solid rgba(201,166,104,0.22); border-radius: 50%; pointer-events: none;"></div>
+        <div style="position: absolute; top: 12%; left: 50%; transform: translateX(-50%); width: 236px; height: 236px; border: 1px solid rgba(201,166,104,0.12); border-radius: 50%; pointer-events: none;"></div>
+        <!-- cut-out figure -->
+        <div style="position: relative; width: 100%; min-width: 0; height: 560px; display: flex; align-items: flex-end; justify-content: center;">
+          <image-slot id="mc-hero-coach" src="images/coach-manh-ha.jpeg" shape="rect" fit="contain" position="bottom" placeholder="Ảnh coach Mạnh Hà đã tách nền (PNG trong suốt)" style="width: 100%; height: 100%; aspect-ratio: auto;"></image-slot>
+        </div>
+        <!-- floating credential badge -->
+        <div style="position: absolute; bottom: 22px; right: 0; z-index: 2; background: rgba(13,27,42,0.86); backdrop-filter: blur(8px); border: 1px solid rgba(201,166,104,0.35); box-shadow: 0 18px 40px rgba(0,0,0,0.45); padding: 16px 20px;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #E7D0A2; line-height: 1;">Nguyễn Vũ Mạnh Hà</div>
+          <div style="font-size: 10.5px; letter-spacing: 0.1em; color: #8193A4; font-weight: 600; margin-top: 6px;">HEAD OF MANAGEMENT COACH</div>
+        </div>
+        <!-- floating stat chip -->
+        <div style="position: absolute; top: 10%; left: -6px; z-index: 2; background: rgba(13,27,42,0.86); backdrop-filter: blur(8px); border: 1px solid rgba(201,166,104,0.3); padding: 12px 16px; text-align: center;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: #E7D0A2; line-height: 1;">11K+</div>
+          <div style="font-size: 9.5px; letter-spacing: 0.08em; color: #8193A4; margin-top: 5px;">HỌC VIÊN</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Strip -->
+    <div style="border-top: 1px solid rgba(201,166,104,0.12); max-width: 1200px; margin: 0 auto;">
+      <div data-stagger style="padding: 30px 32px 42px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+        <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+          <div class="rv">
+            <div style="font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 600; color: #E7D0A2; line-height: 1;"><span data-count="{{ m.num }}">{{ m.num }}</span>{{ m.suffix }}</div>
+            <div style="font-size: 13px; line-height: 1.5; color: #8193A4; margin-top: 10px;">{{ m.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM / INTRO ============ -->
+  <section id="gioi-thieu" data-screen-label="Giới thiệu" style="background: #0D1B2A; padding: 106px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 68px; align-items: center;">
+      <div class="rv rv-l">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 22px;">BỐI CẢNH</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 43px; line-height: 1.32; color: #F7F1E7;">Lãnh đạo giàu kinh nghiệm, nhưng <span style="color: #E7D0A2;">vẫn gặp thách thức?</span></h2>
+        <p style="font-size: 16px; line-height: 1.8; color: #D9E0E7; margin-top: 26px;">Trong thực tế doanh nghiệp, nhiều lãnh đạo không thiếu kinh nghiệm nhưng vẫn gặp khó khi phải xác định đúng vấn đề quản trị, lựa chọn chiến lược phù hợp, tạo đồng thuận với đội ngũ và biến giải pháp thành kết quả.</p>
+        <p style="font-size: 16px; line-height: 1.8; color: #8193A4; margin-top: 18px;">Management Coaching chuyên nghiệp được thiết kế để giúp Management Coach làm việc hiệu quả với các vấn đề đó: <strong style="color: #E7D0A2; font-weight: 600;">kết hợp tư duy phân tích của tư vấn quản trị với chiều sâu khai vấn lãnh đạo</strong> để giúp khách hàng tự nhìn rõ vấn đề, tự tạo lựa chọn và cam kết hành động.</p>
+      </div>
+      <div class="rv rv-r">
+        <div style="position: relative; border-radius: 14px; overflow: hidden; border: 1px solid rgba(201,166,104,0.18); height: 240px;">
+          <image-slot id="mc-problem-photo" src="images/stock-problem.jpg" shape="rect" fit="cover" placeholder="Buổi đào tạo Management Coaching"></image-slot>
+          <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(7,18,31,0.10), rgba(7,18,31,0.55));"></div>
+        </div>
+        <div style="margin-top: 22px; background: #102338; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; padding: 30px 32px; position: relative;">
+          <div style="width: 52px; height: 52px; border-radius: 14px; background: rgba(201,166,104,0.1); border: 1px solid rgba(201,166,104,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E7D0A2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+          </div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: #F7F1E7;">Giá trị cốt lõi của chương trình</h3>
+          <p style="font-size: 14.5px; line-height: 1.75; color: #8193A4; margin-top: 14px;">Giúp học viên có một phương pháp hành nghề rõ ràng — biết cách tiếp cận case quản trị thật, đóng khung vấn đề bằng tư duy có cấu trúc, chẩn đoán nguyên nhân bằng dữ liệu và hệ thống, khai vấn lãnh đạo về điểm mù và quyết định, sau đó đồng kiến tạo giải pháp và đồng hành triển khai trong 90 ngày.</p>
+          <div style="display: inline-block; margin-top: 20px; font-size: 12px; letter-spacing: 0.08em; color: #C9A668; font-weight: 600; border: 1px solid rgba(201,166,104,0.3); padding: 8px 14px;">✦ Phương pháp hành nghề rõ ràng</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUDIENCE ============ -->
+  <section id="doi-tuong" data-screen-label="Đối tượng" style="background: #07121F; padding: 106px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="margin-bottom: 44px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">DÀNH CHO AI</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 43px; line-height: 1.32; color: #F7F1E7;">Bạn là ai? <span style="color: #E7D0A2;">Giá trị nhận được.</span></h2>
+      </div>
+      <div class="rv" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; margin-bottom: 40px;">
+        <image-slot id="mc-audience-banner" src="images/stock-audience.jpg" shape="rect" fit="cover" placeholder="Buổi coaching doanh nghiệp"></image-slot>
+        <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(7,18,31,0.94) 0%, rgba(7,18,31,0.82) 40%, rgba(7,18,31,0.30) 100%);"></div>
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; padding: 0 48px;">
+          <p style="max-width: 560px; font-size: 18px; line-height: 1.65; color: #F7F1E7; font-weight: 500;">Chương trình dành cho những ai đang làm việc với lãnh đạo và mong muốn phát triển năng lực khai vấn quản trị chuyên nghiệp — kết hợp giữa tư duy tư vấn và chiều sâu coaching.</p>
+        </div>
+      </div>
+      <div data-stagger style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <sc-for list="{{ audience }}" as="a" hint-placeholder-count="4">
+          <div class="rv" style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; padding: 30px 26px; transition: opacity 0.7s ease, transform 0.35s cubic-bezier(0.22,0.68,0.24,1), border-color 0.35s, background 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); background: #102338; transform: translateY(-5px);">
+            <div data-svg="{{ a.icon }}" style="width: 52px; height: 52px; border-radius: 14px; background: rgba(201,166,104,0.1); border: 1px solid rgba(201,166,104,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"></div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: #E7D0A2; font-weight: 600; line-height: 1.32;">{{ a.role }}</h3>
+            <p style="font-size: 14px; line-height: 1.65; color: #8193A4; margin-top: 14px;">{{ a.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPETENCY MODEL ============ -->
+  <section data-screen-label="Mô hình năng lực" style="background: #0D1B2A; padding: 106px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="text-align: center; max-width: 750px; margin: 0 auto 52px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">MÔ HÌNH NĂNG LỰC</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 43px; line-height: 1.32; color: #F7F1E7;">4 trụ cột năng lực <span style="color: #E7D0A2;">Management Coach</span></h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #8193A4; margin: 20px auto 0;">Bản đồ phát triển giúp học viên hiểu rõ mình cần học gì, thực hành gì và sẽ sử dụng năng lực đó như thế nào khi làm việc với lãnh đạo</p>
+      </div>
+      <div data-stagger style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+          <div class="rv" style="background: #07121F; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; padding: 32px 28px; display: flex; flex-direction: column; transition: opacity 0.75s ease, transform 0.35s cubic-bezier(0.22,0.68,0.24,1), border-color 0.35s, background 0.35s;" style-hover="border-color: rgba(201,166,104,0.5); background: #102338; transform: translateY(-6px);">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div data-svg="{{ p.icon }}" style="width: 54px; height: 54px; border-radius: 50%; border: 1px solid rgba(201,166,104,0.4); display: flex; align-items: center; justify-content: center;"></div>
+              <span style="font-family: 'Playfair Display', serif; font-size: 30px; color: rgba(201,166,104,0.28); font-weight: 600;">{{ p.num }}</span>
+            </div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #F7F1E7; margin-top: 22px; line-height: 1.3;">{{ p.title }}</h3>
+            <p style="font-size: 14px; line-height: 1.65; color: #8193A4; margin-top: 14px;">{{ p.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUTCOMES ============ -->
+  <section data-screen-label="Chuẩn đầu ra" style="background: #07121F; padding: 106px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="max-width: 640px; margin-bottom: 50px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">CHUẨN ĐẦU RA</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 43px; line-height: 1.32; color: #F7F1E7;">Sau chương trình, <span style="color: #E7D0A2;">bạn sẽ làm được gì?</span></h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #8193A4; margin-top: 18px;">6 năng lực cốt lõi bạn sẽ sở hữu sau khi hoàn thành chương trình</p>
+      </div>
+      <div data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="6">
+          <div class="rv" style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; padding: 30px 28px; display: flex; gap: 18px; align-items: flex-start; transition: opacity 0.75s ease, transform 0.35s cubic-bezier(0.22,0.68,0.24,1), border-color 0.35s, background 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); background: #102338; transform: translateY(-4px);">
+            <div data-svg="{{ o.icon }}" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: rgba(201,166,104,0.1); border: 1px solid rgba(201,166,104,0.3); display: flex; align-items: center; justify-content: center;"></div>
+            <p style="font-size: 14.5px; line-height: 1.6; color: #D9E0E7; align-self: center;">{{ o.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISUAL BREAK — QUOTE + STATS ============ -->
+  <section data-screen-label="Triết lý" style="position: relative; overflow: hidden; background: #0D1B2A;">
+    <div style="position: absolute; inset: 0;">
+      <image-slot id="mc-visualbreak" src="images/stock-visualbreak.jpg" shape="rect" fit="cover" placeholder="Không gian coaching"></image-slot>
+    </div>
+    <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(7,18,31,0.92) 0%, rgba(7,18,31,0.86) 50%, rgba(7,18,31,0.94) 100%);"></div>
+    <div class="rv" style="position: relative; max-width: 900px; margin: 0 auto; padding: 96px 32px; text-align: center;">
+      <div style="display: inline-flex; width: 58px; height: 58px; border-radius: 50%; border: 1px solid rgba(201,166,104,0.4); align-items: center; justify-content: center; margin-bottom: 28px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E7D0A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+      </div>
+      <p style="font-family: 'Playfair Display', serif; font-weight: 500; font-style: italic; font-size: 30px; line-height: 1.4; color: #F7F1E7;">"Management Coaching không chỉ là đặt câu hỏi — đó là kết hợp tư duy phân tích của tư vấn quản trị với <span style="color: #E7D0A2;">chiều sâu khai vấn lãnh đạo</span>, để giúp lãnh đạo tự nhìn rõ vấn đề thật và đồng kiến tạo giải pháp bền vững."</p>
+      <p style="font-size: 13px; letter-spacing: 0.1em; color: #C9A668; font-weight: 600; margin-top: 26px;">— NGUYỄN VŨ MẠNH HÀ, HEAD OF MANAGEMENT COACH</p>
+      <div style="height: 1px; width: 120px; background: rgba(201,166,104,0.3); margin: 44px auto;"></div>
+      <div data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+        <div class="rv">
+          <div style="font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 600; color: #E7D0A2; line-height: 1;"><span data-count="2100">2100</span>+</div>
+          <div style="font-size: 13px; line-height: 1.5; color: #8193A4; margin-top: 12px;">Khai vấn quản trị<br>cấp lãnh đạo và điều hành</div>
+        </div>
+        <div class="rv">
+          <div style="font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 600; color: #E7D0A2; line-height: 1;"><span data-count="300">300</span>+</div>
+          <div style="font-size: 13px; line-height: 1.5; color: #8193A4; margin-top: 12px;">Coach được đào tạo<br>theo chuẩn ICF</div>
+        </div>
+        <div class="rv">
+          <div style="font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 600; color: #E7D0A2; line-height: 1;"><span data-count="11000">11000</span>+</div>
+          <div style="font-size: 13px; line-height: 1.5; color: #8193A4; margin-top: 12px;">Học viên đã được<br>chuyển hóa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODULES ============ -->
+  <section id="chuong-trinh" data-screen-label="Chương trình" style="background: #F7F1E7; padding: 110px 0; color: #0D1B2A;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="max-width: 720px; margin-bottom: 44px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #A87636; font-weight: 600; margin-bottom: 20px;">NỘI DUNG CHƯƠNG TRÌNH</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 44px; line-height: 1.32; color: #07121F;">4 Modules <span style="color: #A87636;">chuyên sâu</span></h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #45505C; margin-top: 18px;">Hệ thống kiến thức và thực hành từ nền tảng đến ứng dụng, kết hợp tư duy tư vấn quản trị với chiều sâu khai vấn lãnh đạo</p>
+      </div>
+
+      <div class="rv" style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px;">
+        <sc-for list="{{ moduleTabs }}" as="t" hint-placeholder-count="4">
+          <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="background: #ffffff; border: 1px solid rgba(13,27,42,0.09); border-radius: 20px; padding: 46px 48px; box-shadow: 0 12px 34px rgba(7,18,31,0.06);">
+        <div style="display: flex; align-items: flex-start; gap: 22px; padding-bottom: 30px; border-bottom: 1px solid rgba(13,27,42,0.1);">
+          <div style="width: 62px; height: 62px; border-radius: 50%; background: #0D1B2A; color: #E7D0A2; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; flex-shrink: 0;">{{ activeMod.num }}</div>
+          <div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: #07121F; line-height: 1.32;">{{ activeMod.name }}</h3>
+            <p style="font-size: 15px; line-height: 1.7; color: #55606C; margin-top: 12px;">{{ activeMod.desc }}</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-top: 34px;">
+          <sc-for list="{{ activeMod.topics }}" as="tp" hint-placeholder-count="6">
+            <div style="display: flex; gap: 16px; align-items: flex-start; padding: 8px 0;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(201,166,104,0.14); border: 1px solid rgba(168,118,54,0.35); color: #A87636; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;">{{ tp.num }}</div>
+              <div>
+                <h4 style="font-size: 15.5px; font-weight: 600; color: #07121F; line-height: 1.35;">{{ tp.title }}</h4>
+                <p style="font-size: 13.5px; line-height: 1.6; color: #55606C; margin-top: 6px;">{{ tp.desc }}</p>
+                <div style="display: inline-block; margin-top: 8px; font-size: 11.5px; color: #A87636; font-weight: 600; letter-spacing: 0.02em;">→ {{ tp.outcome }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top: 34px; padding-top: 28px; border-top: 1px solid rgba(13,27,42,0.1);">
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.06em; color: #A87636; font-weight: 700; margin-bottom: 18px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A87636" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2 2.6-2.6z"/></svg>
+            CÔNG CỤ NHẬN ĐƯỢC SAU MODULE {{ activeMod.num }}
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <sc-for list="{{ activeMod.tools }}" as="tool" hint-placeholder-count="5">
+              <span style="font-size: 13px; font-weight: 500; color: #0D1B2A; background: #F7F1E7; border: 1px solid rgba(168,118,54,0.3); padding: 8px 14px; border-radius: 999px;">{{ tool }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOOLS ============ -->
+  <section id="cong-cu" data-screen-label="Công cụ" style="background: #0D1B2A; padding: 106px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="text-align: center; max-width: 720px; margin: 0 auto 52px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">BLUEPRINT &amp; TOOLKIT</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 43px; line-height: 1.32; color: #F7F1E7;">Blueprint &amp; Toolkit <span style="color: #E7D0A2;">hành nghề chuyên nghiệp</span></h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #8193A4; margin: 20px auto 0;">Bộ hướng dẫn và công cụ hoàn chỉnh giúp bạn tự tin ra ngoài làm nghề ngay lập tức sau khi hoàn thành chương trình</p>
+      </div>
+      <div data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <sc-for list="{{ toolkit }}" as="k" hint-placeholder-count="9">
+          <div class="rv" style="background: #07121F; border: 1px solid rgba(201,166,104,0.16); border-radius: 14px; padding: 28px 26px; display: flex; gap: 18px; align-items: flex-start; transition: opacity 0.7s ease, transform 0.35s cubic-bezier(0.22,0.68,0.24,1), border-color 0.35s, background 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); background: #102338; transform: translateY(-4px);">
+            <div data-svg="{{ k.icon }}" style="width: 46px; height: 46px; flex-shrink: 0; border-radius: 12px; background: rgba(201,166,104,0.1); border: 1px solid rgba(201,166,104,0.3); display: flex; align-items: center; justify-content: center;"></div>
+            <div>
+              <h4 style="font-size: 15.5px; font-weight: 600; color: #F7F1E7; line-height: 1.3;">{{ k.name }}</h4>
+              <p style="font-size: 13px; line-height: 1.55; color: #8193A4; margin-top: 7px;">{{ k.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPEAKERS ============ -->
+  <section id="giang-vien" data-screen-label="Diễn giả" style="background: #07121F; padding: 106px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="text-align: center; max-width: 740px; margin: 0 auto 52px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">ĐỘI NGŨ CHUYÊN GIA</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 43px; line-height: 1.32; color: #F7F1E7;">Những chuyên gia <span style="color: #E7D0A2;">dẫn dắt chương trình</span></h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #8193A4; margin: 20px auto 0;">Đội ngũ chuyên gia đa lĩnh vực, mỗi người chịu trách nhiệm giải quyết một khía cạnh cụ thể trong hành trình phát triển nghề Management Coaching của bạn</p>
+      </div>
+
+      <!-- Main speaker -->
+      <div class="rv" style="position: relative; background: #0D1B2A; border: 1px solid rgba(201,166,104,0.2); border-radius: 20px; padding: 42px 44px;">
+        <div style="position: absolute; top: -13px; left: 44px; background: linear-gradient(180deg, #D7B16E, #B98A48); color: #07121F; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; padding: 7px 16px;">HEAD OF MANAGEMENT COACH</div>
+        <div style="display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: start; margin-top: 8px;">
+          <div style="position: relative;">
+            <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(201,166,104,0.3); aspect-ratio: 3/4;">
+              <img src="images/coach-manh-ha.jpeg" alt="Coach Nguyễn Vũ Mạnh Hà" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </div>
+            <div style="position: absolute; bottom: -16px; right: -8px; background: #102338; border: 1px solid rgba(201,166,104,0.35); padding: 14px 18px; text-align: center;">
+              <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: #E7D0A2; line-height: 1;">HPC</div>
+              <div style="font-size: 9px; letter-spacing: 0.08em; color: #8193A4; margin-top: 4px;">High Performance Coach</div>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 600; color: #F7F1E7;">Nguyễn Vũ Mạnh Hà</h3>
+            <p style="font-size: 14px; color: #C9A668; font-weight: 600; margin-top: 8px;">Head of Management Coach — Thiết kế &amp; dẫn dắt chương trình</p>
+            <p style="font-size: 14.5px; line-height: 1.75; color: #8193A4; margin-top: 16px;">Chuyên gia hàng đầu về phát triển năng lực con người và hiệu suất tổ chức với hơn thập kỷ kinh nghiệm tại các tập đoàn tài chính &amp; bảo hiểm quốc tế. Coach Mạnh Hà đã huấn luyện hơn 11,000 học viên và phát triển hơn 300 coach chuyên nghiệp theo tiêu chuẩn ICF toàn cầu.</p>
+            <div style="margin-top: 24px;">
+              <h4 style="font-size: 11px; letter-spacing: 0.18em; color: #B98A48; font-weight: 600; margin-bottom: 16px;">KINH NGHIỆM CHUYÊN MÔN</h4>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span><span>Head of Capability Development Center — <strong style="color: #F7F1E7;">FE Credit SMBC</strong></span></div>
+                <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span><span>Head of Partnership Distribution Training — <strong style="color: #F7F1E7;">Generali Việt Nam</strong></span></div>
+                <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span><span>Team Leader Field Training &amp; Development — <strong style="color: #F7F1E7;">Home Credit Việt Nam</strong></span></div>
+                <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span><span>Director of People Solution &amp; Learning Development — <strong style="color: #F7F1E7;">VCI + LDI Group</strong></span></div>
+              </div>
+            </div>
+            <div style="margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 22px; border-top: 1px solid rgba(201,166,104,0.16);">
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>Best Mentor — HTV "01 Billion Start Up"</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>Best Trainer — BSI (British Standard Institute)</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>2,100+ giờ Khai vấn quản trị cấp lãnh đạo và điều hành</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>500+ giờ Leadership Coaching cho Top Leaders</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>11,000+ học viên đã được đào tạo</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>300+ Coach phát triển theo chuẩn ICF</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supervisor -->
+      <div class="rv" style="position: relative; background: #0D1B2A; border: 1px solid rgba(201,166,104,0.16); border-radius: 20px; padding: 42px 44px; margin-top: 44px;">
+        <div style="position: absolute; top: -13px; left: 44px; background: #102338; border: 1px solid rgba(201,166,104,0.4); color: #E7D0A2; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; padding: 7px 16px;">CERTIFIED COACH SUPERVISOR</div>
+        <div style="display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: start; margin-top: 8px;">
+          <div style="position: relative;">
+            <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(201,166,104,0.3); aspect-ratio: 3/4;">
+              <img src="images/hpc_team_ha_bui.jpeg" alt="Coach Bùi Thị Thu Hà" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </div>
+            <div style="position: absolute; bottom: -16px; right: -8px; background: #102338; border: 1px solid rgba(201,166,104,0.35); padding: 14px 18px; text-align: center;">
+              <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #E7D0A2; line-height: 1;">ICF PCC</div>
+              <div style="font-size: 9px; letter-spacing: 0.06em; color: #8193A4; margin-top: 4px;">Professional Certified Coach</div>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: #F7F1E7;">Bùi Thị Thu Hà</h3>
+            <p style="font-size: 14px; color: #C9A668; font-weight: 600; margin-top: 8px;">ICF PCC Coach &amp; Trainer &amp; Supervisor — Chuẩn hóa năng lực khai vấn cho học viên</p>
+            <p style="font-size: 14.5px; line-height: 1.75; color: #8193A4; margin-top: 16px;">Với hơn 15 năm kinh nghiệm, hàng ngàn giờ đào tạo, 2,000+ giờ khai vấn &amp; giám sát khai vấn và hơn 1,000+ học viên đã được chuyển hóa, Coach Hà luôn theo đuổi sứ mệnh giúp mọi người tìm thấy con người thật của mình và sống trọn vẹn với giá trị cốt lõi riêng.</p>
+            <div style="margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>ICF PCC — Professional Certified Coach</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>Postgraduate Certificate in Coaching Supervision</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>2,000+ giờ khai vấn &amp; giám sát khai vấn tích lũy</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>1,000+ học viên được đào tạo</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>CoachVille &amp; VCI Certified</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #D9E0E7;"><span style="color: #C9A668;">✦</span>Barefoot Coaching &amp; University of Chester (UK)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experts & advisors -->
+      <div class="rv" style="margin-top: 52px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 26px; text-align: center;">ĐỘI NGŨ CHUYÊN GIA &amp; CỐ VẤN</div>
+        <div data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+          <sc-for list="{{ experts }}" as="e" hint-placeholder-count="5">
+            <div class="rv" style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; padding: 30px 28px; transition: opacity 0.7s ease, transform 0.35s cubic-bezier(0.22,0.68,0.24,1), border-color 0.35s, background 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); background: #102338; transform: translateY(-5px);">
+              <div style="width: 76px; height: 76px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(201,166,104,0.3); margin-bottom: 18px;">
+                <image-slot id="{{ e.slotId }}" src="{{ e.img }}" shape="circle" fit="cover" placeholder="Ảnh chuyên gia"></image-slot>
+              </div>
+              <h3 style="font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 600; color: #F7F1E7;">{{ e.name }}</h3>
+              <div style="font-size: 12.5px; color: #C9A668; font-weight: 600; margin-top: 6px;">{{ e.title }}</div>
+              <p style="font-size: 13.5px; line-height: 1.65; color: #8193A4; margin-top: 14px;">{{ e.detail }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOURNEY ============ -->
+  <section id="hanh-trinh" data-screen-label="Hành trình học" style="background: #F7F1E7; padding: 110px 0; color: #0D1B2A;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="text-align: center; max-width: 740px; margin: 0 auto 56px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #A87636; font-weight: 600; margin-bottom: 20px;">HÀNH TRÌNH HỌC</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 44px; line-height: 1.32; color: #07121F;">Lộ trình đào tạo <span style="color: #A87636;">chuyên sâu &amp; thực chiến</span></h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #45505C; margin: 20px auto 0;">3 ngày Offline chuyên sâu + 1 ngày Online + 90 ngày ứng dụng thực tế, giúp bạn chuyển hóa kiến thức thành năng lực hành nghề thực sự</p>
+      </div>
+      <div data-stagger style="display: flex; flex-direction: column; gap: 22px;">
+        <sc-for list="{{ journey }}" as="j" hint-placeholder-count="4">
+          <div class="rv" style="background: #ffffff; border: 1px solid rgba(13,27,42,0.09); border-radius: 18px; padding: 34px 38px; box-shadow: 0 10px 28px rgba(7,18,31,0.05); border-left: 3px solid {{ j.accent }};">
+            <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+              <span style="font-size: 11px; letter-spacing: 0.12em; font-weight: 700; color: {{ j.badgeColor }}; background: {{ j.badgeBg }}; border: 1px solid {{ j.badgeBorder }}; padding: 6px 12px;">{{ j.badge }}</span>
+              <sc-if value="{{ j.date }}" hint-placeholder-val="">
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #A87636; font-weight: 600;">{{ j.date }}</span>
+              </sc-if>
+            </div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: #07121F; margin-top: 16px;">{{ j.title }}</h3>
+            <p style="font-size: 15px; line-height: 1.7; color: #55606C; margin-top: 12px;">{{ j.desc }}</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; margin-top: 20px;">
+              <sc-for list="{{ j.details }}" as="d" hint-placeholder-count="3">
+                <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #2C3742;"><span style="color: #A87636; flex-shrink: 0;">◆</span><span>{{ d }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOOKS — ĐẶC QUYỀN KHÓA 01 ============ -->
+  <section data-screen-label="Đặc quyền khóa 01" style="background: #07121F; padding: 106px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="text-align: center; max-width: 720px; margin: 0 auto 52px;">
+        <div style="display: inline-block; font-size: 11px; letter-spacing: 0.12em; font-weight: 700; color: #07121F; background: linear-gradient(180deg, #E7D0A2, #C9A668); padding: 7px 16px; margin-bottom: 20px;">ĐẶC QUYỀN KHÓA 01</div>
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 18px;">CHỈ DÀNH CHO KHÓA ĐẦU TIÊN</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 43px; line-height: 1.32; color: #F7F1E7;">Đặc quyền <span style="color: #E7D0A2;">dành riêng khóa đầu tiên</span></h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #8193A4; margin: 20px auto 0;">Những giá trị đặc biệt chỉ dành riêng cho học viên đăng ký khóa đầu tiên</p>
+      </div>
+      <div data-stagger style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        <sc-for list="{{ hooks }}" as="h" hint-placeholder-count="4">
+          <div class="rv" style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; padding: 34px 34px; display: flex; gap: 22px; align-items: flex-start; transition: opacity 0.7s ease, transform 0.35s cubic-bezier(0.22,0.68,0.24,1), border-color 0.35s, background 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); background: #102338; transform: translateY(-4px);">
+            <div data-svg="{{ h.icon }}" style="width: 54px; height: 54px; flex-shrink: 0; border-radius: 14px; background: rgba(201,166,104,0.1); border: 1px solid rgba(201,166,104,0.3); display: flex; align-items: center; justify-content: center;"></div>
+            <div>
+              <h3 style="font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 600; color: #F7F1E7; line-height: 1.3;">{{ h.title }}</h3>
+              <p style="font-size: 14px; line-height: 1.65; color: #8193A4; margin-top: 12px;">{{ h.desc }}</p>
+              <div style="display: inline-block; margin-top: 16px; font-size: 12px; letter-spacing: 0.04em; color: #E7D0A2; font-weight: 600; border: 1px solid rgba(201,166,104,0.3); padding: 7px 14px;">{{ h.value }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section id="dang-ky" data-screen-label="Đăng ký" style="background: radial-gradient(110% 140% at 50% 0%, #12304C 0%, #0D1B2A 55%, #07121F 100%); padding: 110px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="text-align: center; max-width: 720px; margin: 0 auto 44px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">ĐĂNG KÝ THAM GIA</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 46px; line-height: 1.32; color: #F7F1E7;">Đầu tư cho <span style="color: #E7D0A2;">sự nghiệp khai vấn quản trị</span></h2>
+      </div>
+
+      <!-- Event info bar -->
+      <div class="rv" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,166,104,0.16); border: 1px solid rgba(201,166,104,0.16); margin-bottom: 40px;">
+        <div style="background: #0D1B2A; padding: 24px 28px; display: flex; gap: 16px; align-items: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A668" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div><strong style="display: block; color: #F7F1E7; font-size: 14.5px;">18–20/09 + 27/09/2026</strong><span style="font-size: 12.5px; color: #8193A4;">3 ngày Offline + 27/09 Online qua Zoom</span></div>
+        </div>
+        <div style="background: #0D1B2A; padding: 24px 28px; display: flex; gap: 16px; align-items: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A668" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><strong style="display: block; color: #F7F1E7; font-size: 14.5px;">Khách sạn Ramana</strong><span style="font-size: 12.5px; color: #8193A4;">323 Lê Văn Sỹ, Nhiêu Lộc, Hồ Chí Minh</span></div>
+        </div>
+        <div style="background: #0D1B2A; padding: 24px 28px; display: flex; gap: 16px; align-items: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A668" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><strong style="display: block; color: #F7F1E7; font-size: 14.5px;">08:30 — 17:30</strong><span style="font-size: 12.5px; color: #8193A4;">Bao gồm tea break &amp; lunch</span></div>
+        </div>
+      </div>
+
+      <!-- Pricing cards -->
+      <div class="rv" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 920px; margin: 0 auto;">
+        <div style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.5); border-radius: 18px; padding: 40px 38px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4);">
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <span style="font-size: 13px; font-weight: 600; color: #E7D0A2;">Ưu đãi Khóa đầu tiên</span>
+            <span style="font-size: 11px; font-weight: 700; color: #07121F; background: #C9A668; padding: 3px 8px;">-50%</span>
+          </div>
+          <div style="font-size: 13px; color: #8193A4; text-decoration: line-through; margin-top: 16px;">Giá chuẩn: 120.000.000 VNĐ</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 600; color: #F7F1E7; margin-top: 6px;"><span style="font-size: 16px; color: #C9A668;">VNĐ</span> 60,000,000</div>
+          <div style="font-size: 13px; color: #C9A668; font-weight: 500; margin-top: 8px;">Ưu đãi 50% — Chỉ dành cho khóa 01</div>
+          <div style="font-size: 11.5px; color: #8193A4; margin-top: 4px;">* Chưa bao gồm VAT</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 26px;">
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>3 ngày Offline Intensive Training</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>1 ngày học trực tuyến</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>Blueprint &amp; Toolkit hành nghề hoàn chỉnh</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>4 buổi Cố vấn Nhóm (Group Mentoring)</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>Tài liệu &amp; Template đầy đủ</li>
+          </ul>
+          <a href="https://huytranvn.sg.larksuite.com/share/base/form/shrlglIk4aXFOViV25zxcHfhvse" target="_blank" rel="noopener" style="display: block; text-align: center; margin-top: 28px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; padding: 16px;" style-hover="filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,166,104,0.3);">Đăng ký Khóa 01 →</a>
+        </div>
+        <div style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.16); border-radius: 18px; padding: 40px 38px;">
+          <div style="font-size: 13px; font-weight: 600; color: #8193A4;">Standard</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 600; color: #F7F1E7; margin-top: 22px;"><span style="font-size: 16px; color: #C9A668;">VNĐ</span> 120,000,000</div>
+          <div style="font-size: 13px; color: #8193A4; margin-top: 8px;">Giá chuẩn từ khóa thứ hai</div>
+          <div style="font-size: 11.5px; color: #8193A4; margin-top: 4px;">* Chưa bao gồm VAT</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 26px;">
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>3 ngày Offline Intensive Training</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>1 ngày học trực tuyến</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>Blueprint &amp; Toolkit hành nghề hoàn chỉnh</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>4 buổi Cố vấn Nhóm (Group Mentoring)</li>
+            <li style="display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: #D9E0E7;"><span style="color: #C9A668; flex-shrink: 0;">◆</span>Tài liệu &amp; Template đầy đủ</li>
+          </ul>
+          <a href="https://huytranvn.sg.larksuite.com/share/base/form/shrlglIk4aXFOViV25zxcHfhvse" target="_blank" rel="noopener" style="display: block; text-align: center; margin-top: 28px; border: 1px solid rgba(201,166,104,0.4); color: #E7D0A2; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 16px;" style-hover="border-color: #C9A668; background: rgba(201,166,104,0.06);">Đăng ký ngay →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" data-screen-label="FAQ" style="background: #F7F1E7; padding: 110px 0; color: #0D1B2A;">
+    <div style="max-width: 820px; margin: 0 auto; padding: 0 32px;">
+      <div class="rv" style="text-align: center; margin-bottom: 48px;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; color: #A87636; font-weight: 600; margin-bottom: 20px;">CÂU HỎI THƯỜNG GẶP</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 44px; line-height: 1.32; color: #07121F;">Bạn thắc mắc <span style="color: #A87636;">điều gì?</span></h2>
+      </div>
+      <div class="rv" style="display: flex; flex-direction: column; gap: 14px;">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+          <div style="background: #ffffff; border: 1px solid rgba(13,27,42,0.09); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(7,18,31,0.04);">
+            <button onClick="{{ f.onClick }}" style="width: 100%; text-align: left; background: transparent; border: none; cursor: pointer; padding: 24px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: Montserrat, sans-serif; font-size: 16px; font-weight: 600; color: #07121F;">
+              <span>{{ f.q }}</span>
+              <span style="font-size: 22px; color: #A87636; flex-shrink: 0; line-height: 1; transform: {{ f.iconRotate }}; transition: transform 0.3s;">+</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="">
+              <div style="padding: 0 26px 26px;">
+                <p style="font-size: 14.5px; line-height: 1.75; color: #45505C;">{{ f.a }}</p>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-screen-label="Footer" style="background: #07121F; border-top: 1px solid rgba(201,166,104,0.14); padding: 60px 0 38px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1.7fr 1fr 1fr; gap: 40px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(201,166,104,0.28);">
+            <image-slot id="mc-mark-footer" src="assets/logo-mark.png" shape="circle" fit="contain" placeholder="Logo"></image-slot>
+          </div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: #F7F1E7;">GoWise Partner</div>
+        </div>
+        <p style="font-size: 13.5px; line-height: 1.7; color: #8193A4; margin-top: 20px; max-width: 340px;"><strong style="color: #D9E0E7;">GoWise Partner</strong> — Strategic Management Coaching. Khai Vấn Quản Trị Chuyên Nghiệp — Management Coaching.</p>
+        <p style="font-size: 13.5px; color: #8193A4; margin-top: 14px;">Liên hệ: <a href="mailto:info@gwp.vn" style="color: #D7B16E;">info@gwp.vn</a></p>
+      </div>
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">CHƯƠNG TRÌNH</div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="#gioi-thieu" style="color: #D9E0E7; font-size: 14px;">Giới thiệu</a>
+          <a href="#doi-tuong" style="color: #D9E0E7; font-size: 14px;">Đối tượng</a>
+          <a href="#chuong-trinh" style="color: #D9E0E7; font-size: 14px;">Chương trình</a>
+          <a href="#cong-cu" style="color: #D9E0E7; font-size: 14px;">Công cụ</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">LIÊN HỆ</div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="#giang-vien" style="color: #D9E0E7; font-size: 14px;">Diễn giả</a>
+          <a href="#dang-ky" style="color: #D9E0E7; font-size: 14px;">Đăng ký tham gia</a>
+          <a href="mailto:info@gwp.vn" style="color: #D9E0E7; font-size: 14px;">info@gwp.vn</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1200px; margin: 44px auto 0; padding: 24px 32px 0; border-top: 1px solid rgba(201,166,104,0.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 11px; letter-spacing: 0.14em; color: #4C6076;">
+      <span>© 2026 GOWISE PARTNER</span>
+      <span>KHAI VẤN QUẢN TRỊ CHUYÊN NGHIỆP</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { activeModule: 0, openFaq: 0 };
+
+  componentDidMount() {
+    requestAnimationFrame(() => this.initAnim());
+  }
+
+  componentDidUpdate() {
+    // re-inject any icons that appear after a tab switch / faq toggle
+    this.injectIcons();
+  }
+
+  injectIcons() {
+    const root = document.getElementById('mc-root');
+    if (!root) return;
+    root.querySelectorAll('[data-svg]').forEach((el) => {
+      const svg = el.getAttribute('data-svg');
+      if (svg && el.childElementCount === 0) el.innerHTML = svg;
+    });
+  }
+
+  initAnim() {
+    const root = document.getElementById('mc-root');
+    if (!root) return;
+    this.injectIcons();
+
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    root.querySelectorAll('[data-stagger]').forEach((group) => {
+      const kids = Array.from(group.children).filter((c) => c.classList.contains('rv'));
+      kids.forEach((el, i) => { el.style.transitionDelay = (i * 70) + 'ms'; });
+    });
+
+    if (reduce || !('IntersectionObserver' in window)) {
+      root.querySelectorAll('.rv').forEach((el) => el.classList.add('in'));
+      root.querySelectorAll('[data-count]').forEach((el) => { el.textContent = this.fmt(el.getAttribute('data-count')); });
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    root.querySelectorAll('.rv').forEach((el) => io.observe(el));
+
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        this.countUp(e.target);
+        cio.unobserve(e.target);
+      });
+    }, { threshold: 0.6 });
+    root.querySelectorAll('[data-count]').forEach((el) => { el.textContent = '0'; cio.observe(el); });
+  }
+
+  fmt(n) {
+    return Number(n).toLocaleString('en-US');
+  }
+
+  countUp(el) {
+    const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    const dur = 1000, start = performance.now();
+    const tick = (now) => {
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = this.fmt(Math.round(eased * target));
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = this.fmt(target);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  renderVals() {
+    const gold = '#C9A668';
+    const icRing = (p) => `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="${gold}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+    const icGold = (p) => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E7D0A2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+
+    const tabStyleBase = "cursor: pointer; font-family: Montserrat, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; padding: 13px 22px; border-radius: 999px; transition: all 0.25s;";
+    const tabActive = tabStyleBase + " background: #0D1B2A; color: #E7D0A2; border: 1px solid #0D1B2A;";
+    const tabIdle = tabStyleBase + " background: transparent; color: #55606C; border: 1px solid rgba(13,27,42,0.16);";
+
+    const modules = [
+      {
+        num: '01', name: 'Nền tảng Management Coaching & Tư duy Tư vấn Quản trị',
+        desc: 'Hiểu rõ bản chất Management Coaching, ranh giới với Executive Coaching và Consulting, cách thiết lập quan hệ coaching với lãnh đạo và tư duy đóng khung vấn đề quản trị.',
+        tabLabel: 'Module 1 — Nền tảng',
+        topics: [
+          { num: '1', title: 'Management Coaching là gì?', desc: 'Định nghĩa; phân biệt với Management Consulting, Executive Coaching, Performance Coaching', outcome: 'Định vị phạm vi Management Coaching' },
+          { num: '2', title: 'Năng lực của Management Coach', desc: 'Tư duy phân tích hệ thống, lắng nghe đa tầng, đặt câu hỏi chiến lược, phản chiếu điểm mù, đồng kiến tạo giải pháp', outcome: 'Hiểu rõ mô hình năng lực cần phát triển' },
+          { num: '3', title: 'Thiết lập quan hệ Coaching với Lãnh đạo', desc: 'Niềm tin, vị thế, kỳ vọng, hợp đồng ba bên, bảo mật và ranh giới vai trò', outcome: 'Thiết lập quan hệ đối tác tin cậy' },
+          { num: '4', title: 'Tư duy Consultant: Đóng khung vấn đề quản trị', desc: 'SCQA Problem Framing: Situation – Complication – Question – Answer cho vấn đề quản trị', outcome: 'Chuyển vấn đề mơ hồ thành rõ ràng' },
+          { num: '5', title: 'Hiểu bối cảnh và hệ sinh thái doanh nghiệp', desc: 'Chuỗi giá trị, vòng đời tổ chức, văn hóa doanh nghiệp, áp lực bên ngoài, nguồn lực bên trong', outcome: 'Đọc được bức tranh lớn của doanh nghiệp' },
+          { num: '6', title: 'Xây dựng Management Coaching Case Brief', desc: 'Bối cảnh, mâu thuẫn, câu hỏi trọng tâm, hướng tìm lời giải; chuẩn hóa case quản trị', outcome: 'Hoàn thành bản mô tả case ban đầu' },
+          { num: '7', title: 'Thực hành case mở đầu', desc: 'Học viên chọn một case quản trị thật và chuẩn hóa thành Case Brief', outcome: 'Có case nền tảng dùng xuyên suốt' },
+        ],
+        tools: ['Management Coaching Case Brief', 'SCQA Problem Framing Canvas', 'Stakeholder Map', 'Case Intake Form', 'Coaching Contract Template'],
+      },
+      {
+        num: '02', name: 'Chẩn đoán Vấn đề Quản trị & Khai vấn Nhận thức Lãnh đạo',
+        desc: 'Chẩn đoán vấn đề quản trị bằng tư duy consultant, đồng thời chuyển phân tích thành đối thoại khai vấn lãnh đạo để tạo nhận thức mới thay vì đưa kết luận thay khách hàng.',
+        tabLabel: 'Module 2 — Chẩn đoán',
+        topics: [
+          { num: '1', title: 'Từ triệu chứng đến vấn đề thật', desc: 'Phân biệt biểu hiện bề mặt, vấn đề quản trị, nguyên nhân gốc và điểm đòn bẩy', outcome: 'Tránh khai vấn sai vấn đề' },
+          { num: '2', title: 'Cây vấn đề và tư duy MECE', desc: 'Tách vấn đề phức tạp thành các nhóm nguyên nhân không trùng lặp, không bỏ sót', outcome: 'Cấu trúc hóa vấn đề rõ ràng' },
+          { num: '3', title: 'Cây KPI và phân tích nguyên nhân gốc', desc: 'Liên kết chỉ số kinh doanh với vận hành, con người, quy trình, năng lực và hành vi lãnh đạo', outcome: 'Đọc vấn đề từ dữ liệu và hệ thống' },
+          { num: '4', title: 'Tư duy giả thuyết và dữ liệu kiểm chứng', desc: 'Đặt giả thuyết, xác định dữ liệu cần có, kiểm chứng hoặc loại bỏ giả thuyết', outcome: 'Dẫn dắt lãnh đạo suy nghĩ có căn cứ' },
+          { num: '5', title: 'Lắng nghe hệ thống và mô thức lãnh đạo', desc: 'Nghe dữ kiện, cảm xúc, giả định, niềm tin, quyền lực, xung đột và mô thức ra quyết định', outcome: 'Nghe vấn đề thật phía sau câu chuyện' },
+          { num: '6', title: 'Phản chiếu điểm mù lãnh đạo', desc: 'Dùng dữ liệu và quan sát để giúp lãnh đạo thấy tác động của chính họ lên hệ thống', outcome: 'Tạo nhận thức không phán xét' },
+          { num: '7', title: 'Chuyển phân tích thành câu hỏi Coaching', desc: 'Biến issue tree, KPI tree, giả thuyết và dữ liệu thành câu hỏi mở rộng nhận thức', outcome: 'Ngân hàng câu hỏi khai vấn quản trị' },
+        ],
+        tools: ['Management Problem Diagnosis Map', 'Issue Tree Canvas', 'KPI Tree', 'Root Cause Map', 'Hypothesis Testing Sheet', 'Consulting-to-Coaching Question Bank'],
+      },
+      {
+        num: '03', name: 'Thiết kế Chiến lược, Giải pháp & Khai vấn ra Quyết định',
+        desc: 'Chuyển chẩn đoán thành các lựa chọn chiến lược, giải pháp quản trị và lộ trình coaching phù hợp. Coach không áp đặt giải pháp mà đồng kiến tạo với lãnh đạo.',
+        tabLabel: 'Module 3 — Chiến lược',
+        topics: [
+          { num: '1', title: 'Từ chẩn đoán đến lựa chọn chiến lược', desc: 'Chuyển vấn đề quản trị thành các hướng giải quyết khả thi, có giả định, tác động và rủi ro', outcome: 'Nhiều lựa chọn thay vì một đáp án' },
+          { num: '2', title: 'Đồng kiến tạo giải pháp Management Coaching', desc: 'Dùng câu hỏi, dữ liệu và phản chiếu để lãnh đạo đồng kiến tạo giải pháp — không áp đặt', outcome: 'Giữ đúng bản chất MC' },
+          { num: '3', title: 'Ưu tiên giải pháp', desc: 'Đánh giá theo tác động, tính khả thi, chi phí nguồn lực, rủi ro, thời gian và mức độ chấp nhận của tổ chức', outcome: 'Chọn giải pháp có căn cứ' },
+          { num: '4', title: 'Executive Decision Coaching', desc: 'Khai vấn quyết định: điều cần quyết, tiêu chí lựa chọn, đánh đổi, hệ quả, sự can đảm và trách nhiệm lãnh đạo', outcome: 'Dẫn dắt phiên khai vấn quyết định' },
+          { num: '5', title: 'Khai vấn stakeholder và ảnh hưởng', desc: 'Ai cần đồng thuận, ai có thể cản trở, thông điệp nào cần truyền thông', outcome: 'Giải pháp đi vào hệ thống' },
+          { num: '6', title: 'ORACLE cho Management Coaching', desc: 'Objective - Reflection - Awareness - Creation - Leverage - Encouragement trong bối cảnh chiến lược, quyết định và giải pháp', outcome: 'Cấu trúc hội thoại chuẩn MC' },
+          { num: '7', title: 'Thực hành phiên Management Coaching', desc: 'Role-play khai vấn lãnh đạo về vấn đề quản trị thật: chiến lược, đội ngũ, vận hành hoặc thay đổi', outcome: 'Phản hồi năng lực khai vấn' },
+        ],
+        tools: ['Management Solution Canvas', 'Strategic Options Matrix', 'Impact-Feasibility Matrix', 'Risk & Assumption Map', 'Executive Decision Coaching Guide', 'ORACLE Management Coaching Script'],
+      },
+      {
+        num: '04', name: 'Thiết kế Dự án 90 ngày & Đo lường Tác động Management Coaching',
+        desc: 'Biến giải pháp Management Coaching thành dự án ứng dụng thực tế, có nhịp coaching, quản trị stakeholder, kế hoạch theo dõi, tiêu chí đo lường và báo cáo tác động.',
+        tabLabel: 'Module 4 — Triển khai',
+        topics: [
+          { num: '1', title: 'Chuyển giải pháp thành kế hoạch 90 ngày', desc: 'Xác định mục tiêu 30/60/90 ngày, hành động ưu tiên, chủ sở hữu, mốc kiểm tra và bằng chứng tiến triển', outcome: 'Lộ trình triển khai thực tế' },
+          { num: '2', title: 'Triển khai Coaching', desc: 'Coaching lãnh đạo trong quá trình thực thi: khi gặp kháng cự, thiếu cam kết, dữ liệu thay đổi hoặc áp lực vận hành', outcome: 'Đồng hành sau khi có giải pháp' },
+          { num: '3', title: 'Quản trị stakeholder', desc: 'Làm việc với CEO, sponsor, quản lý trung gian, đội ngũ liên quan; thiết lập nhịp đồng thuận và phản hồi', outcome: 'Liên kết coaching và hệ thống' },
+          { num: '4', title: 'Đo lường tác động', desc: 'Đo ở 5 tầng: chất lượng quyết định, nhận thức lãnh đạo, hành vi lãnh đạo, thay đổi đội ngũ/hệ thống, kết quả kinh doanh', outcome: 'Chứng minh giá trị MC' },
+          { num: '5', title: 'Đạo đức nghề nghiệp', desc: 'Bảo mật, hợp đồng ba bên, trách nhiệm với sponsor, khi nào cần chuyển sang tư vấn/chuyên gia khác', outcome: 'Hành nghề vững vàng & an toàn' },
+          { num: '6', title: 'Thiết kế gói dịch vụ Management Coaching', desc: 'Cấu trúc đề xuất: bối cảnh, mục tiêu, phương pháp, lộ trình, công cụ, kết quả, điều kiện thành công', outcome: 'Đóng gói dự án cho khách hàng' },
+          { num: '7', title: 'Trình bày dự án Management Coaching', desc: 'Trình bày dự án Management Coaching 90 ngày — sản phẩm cuối khóa', outcome: 'Hoàn thành sản phẩm cuối khóa' },
+        ],
+        tools: ['90-day Management Coaching Roadmap', 'Implementation Coaching Plan', 'Stakeholder Alignment Plan', 'Management Coaching Impact Scorecard', 'Final Case Presentation Template'],
+      },
+    ];
+
+    const active = this.state.activeModule;
+    const moduleTabs = modules.map((m, i) => ({
+      label: m.tabLabel,
+      style: i === active ? tabActive : tabIdle,
+      onClick: () => this.setState({ activeModule: i }),
+    }));
+
+    const faqData = [
+      { q: 'Management Coaching khác gì Executive Coaching?', a: 'Executive Coaching thường tập trung vào phát triển cá nhân lãnh đạo (nhận thức, hành vi, mục tiêu cá nhân). Performance Coaching tập trung vào hiệu suất cá nhân. Management Coaching kết hợp thêm tư duy tư vấn quản trị — tập trung vào các nhân sự đầu não trong doanh nghiệp để giải quyết trực tiếp các vấn đề quản trị, ra quyết định chiến lược và triển khai giải pháp trong hệ thống tổ chức.' },
+      { q: 'Tôi chưa có chứng chỉ coaching, có tham gia được không?', a: 'Chương trình phù hợp cho cả người đã có nền tảng coaching lẫn quản lý, consultant, trainer muốn phát triển năng lực khai vấn quản trị. Điều quan trọng là bạn có kinh nghiệm làm việc với lãnh đạo hoặc trong môi trường doanh nghiệp.' },
+      { q: 'Dự án 90 ngày hoạt động như thế nào?', a: 'Sau 3 ngày Offline chuyên sâu và 1 ngày học trực tuyến, bạn sẽ chọn một case quản trị thật để triển khai dự án Management Coaching 90 ngày. Bạn sẽ được hỗ trợ qua 4 buổi Cố vấn Nhóm (Group Mentoring) mỗi tháng 1 lần để hỏi đáp và tháo gỡ vướng mắc. Cuối dự án, bạn trình bày kết quả như sản phẩm cuối khóa.' },
+      { q: 'Chương trình có cấp chứng nhận không?', a: 'Học viên hoàn thành chương trình sẽ nhận chứng nhận từ GoWise Partner — Strategic Management Coaching. Chứng nhận xác nhận năng lực Management Coaching đã được đào tạo và thực hành qua dự án 90 ngày.' },
+    ];
+    const faqs = faqData.map((f, i) => ({
+      q: f.q, a: f.a,
+      open: this.state.openFaq === i,
+      iconRotate: this.state.openFaq === i ? 'rotate(45deg)' : 'rotate(0deg)',
+      onClick: () => this.setState({ openFaq: this.state.openFaq === i ? -1 : i }),
+    }));
+
+    return {
+      moduleTabs,
+      activeMod: modules[active],
+      faqs,
+      metrics: [
+        { num: '4', suffix: '', label: 'Modules chuyên sâu' },
+        { num: '7', suffix: '', label: 'Chuyên gia dẫn dắt' },
+        { num: '90', suffix: '', label: 'Ngày ứng dụng thực tế' },
+        { num: '5', suffix: '★', label: 'Tiêu chuẩn tổ chức' },
+      ],
+      audience: [
+        { role: 'Coach / Executive Coach', desc: 'Có thêm tư duy tư vấn quản trị, biết làm việc với vấn đề kinh doanh - hệ thống - đội ngũ, không chỉ coaching mục tiêu cá nhân của lãnh đạo.', icon: icGold('<path d="M8 10a4 4 0 1 1 8 0c0 2-2 3-2 5H10c0-2-2-3-2-5z"/><path d="M10 19h4"/>') },
+        { role: 'HRD / L&D / OD / Internal Coach', desc: 'Có khung triển khai Management Coaching trong tổ chức, biết kết nối coaching với vấn đề quản trị, năng lực lãnh đạo và kết quả doanh nghiệp.', icon: icGold('<path d="M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01M15 11h.01"/>') },
+        { role: 'Trainer / Consultant / Facilitator', desc: 'Biết chuyển phân tích và khuyến nghị thành đối thoại khai vấn, giúp lãnh đạo đồng kiến tạo giải pháp thay vì phụ thuộc vào chuyên gia.', icon: icGold('<path d="M12 3a6 6 0 0 0-4 10.5c.7.6 1 1.2 1 2h6c0-.8.3-1.4 1-2A6 6 0 0 0 12 3z"/><path d="M9 20h6"/>') },
+        { role: 'Quản lý / Lãnh đạo', desc: 'Phát triển năng lực tư duy hệ thống, đặt câu hỏi chiến lược, khai vấn quyết định và đồng hành đội ngũ thực thi giải pháp.', icon: icGold('<circle cx="12" cy="8" r="3"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/>') },
+      ],
+      pillars: [
+        { num: '01', title: 'Tư duy Tư vấn Quản trị', desc: 'Đóng khung vấn đề; tư duy MECE; cây vấn đề; cây KPI; giả thuyết; dữ liệu; nguyên nhân gốc; điểm đòn bẩy hệ thống.', icon: icRing('<polyline points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>') },
+        { num: '02', title: 'Năng lực Khai vấn Lãnh đạo', desc: 'Thiết lập quan hệ tin cậy; hiện diện; lắng nghe hệ thống; phản chiếu điểm mù; câu hỏi chiến lược; khai vấn quyết định.', icon: icRing('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>') },
+        { num: '03', title: 'Thiết kế Giải pháp Management Coaching', desc: 'Chuyển chẩn đoán thành lựa chọn chiến lược; ưu tiên giải pháp; đồng kiến tạo lộ trình; xác định năng lực/hành vi lãnh đạo cần phát triển.', icon: icRing('<line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>') },
+        { num: '04', title: 'Coaching Triển khai & Đo lường', desc: 'Đồng hành 90 ngày; quản trị stakeholder; theo dõi cam kết; đánh giá tác động ở cấp quyết định, hành vi lãnh đạo, đội ngũ, hệ thống và kết quả.', icon: icRing('<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>') },
+      ],
+      outcomes: [
+        { text: 'Định vị rõ Management Coaching, phân biệt với Management Consulting, Executive Coaching và Performance Coaching', icon: icGold('<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>') },
+        { text: 'Chẩn đoán vấn đề quản trị — đóng khung vấn đề, phân tích nguyên nhân gốc, xác định điểm nghẽn và điểm đòn bẩy hệ thống', icon: icGold('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>') },
+        { text: 'Khai vấn lãnh đạo có chiều sâu — lắng nghe hệ thống, phản chiếu điểm mù, đặt câu hỏi chiến lược và khai vấn quyết định', icon: icGold('<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>') },
+        { text: 'Chuyển phân tích thành đối thoại Coaching — biến dữ liệu, giả thuyết thành câu hỏi giúp lãnh đạo tự nhìn ra vấn đề và lựa chọn', icon: icGold('<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>') },
+        { text: 'Thiết kế chiến lược và giải pháp Coaching — đồng kiến tạo chiến lược, giải pháp quản trị, lựa chọn ưu tiên và lộ trình hành động', icon: icGold('<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>') },
+        { text: 'Đồng hành triển khai 90 ngày — thiết kế hành trình coaching, quản trị stakeholder, đo lường tác động toàn diện', icon: icGold('<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/>') },
+      ],
+      toolkit: [
+        { name: 'SCQA Problem Framing', desc: 'Đóng khung vấn đề quản trị có cấu trúc', icon: icGold('<polyline points="3 9 3 3 9 3"/><polyline points="21 15 21 21 15 21"/><line x1="3" y1="3" x2="10" y2="10"/><line x1="21" y1="21" x2="14" y2="14"/>') },
+        { name: 'Issue Tree & KPI Tree', desc: 'Cấu trúc hóa và phân tích vấn đề MECE', icon: icGold('<rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="16" width="6" height="5" rx="1"/><rect x="16" y="16" width="6" height="5" rx="1"/><path d="M12 7v4M5 16v-2h14v2M12 11v3"/>') },
+        { name: 'Root Cause Map', desc: 'Phân tích nguyên nhân gốc đa tầng', icon: icGold('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>') },
+        { name: 'ORACLE MC Script', desc: 'Cấu trúc hội thoại khai vấn quản trị chuẩn', icon: icGold('<path d="M12 3l3 6 6 .5-4.5 4 1.5 6L12 16l-5.5 3.5L8 13 3.5 9.5 10 9z"/>') },
+        { name: 'Impact-Feasibility Matrix', desc: 'Ưu tiên giải pháp theo tác động & khả thi', icon: icGold('<path d="M12 3v18M3 21h18"/><path d="M7 21V11M12 21V6M17 21V14"/>') },
+        { name: '90-Day Roadmap', desc: 'Lộ trình triển khai dự án MC thực tế', icon: icGold('<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>') },
+        { name: 'Impact Scorecard', desc: 'Đo lường tác động 5 tầng của MC', icon: icGold('<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>') },
+        { name: 'Stakeholder Alignment Plan', desc: 'Quản trị các bên liên quan hiệu quả', icon: icGold('<circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14.5 20c.2-2 1.8-3.5 3.5-3.5s3.3 1.5 3.5 3.5"/>') },
+        { name: 'Decision Coaching Guide', desc: 'Dẫn dắt phiên khai vấn ra quyết định', icon: icGold('<path d="M9 12l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2"/>') },
+      ],
+      experts: [
+        { name: 'Biên Nguyễn', slotId: 'mc-exp-1', title: 'Agile Coach & CVPCC Coach', img: 'images/hpc_team_bien_nguyen.jpg', detail: 'Chuyên gia Agile Coach, cố vấn, tư vấn triển khai các giải pháp hiệu quả Agile, quản trị trong Doanh Nghiệp. Hỗ trợ học viên ứng dụng tư duy linh hoạt vào thiết kế và triển khai dự án Management Coaching — từ lập kế hoạch thích ứng đến quản trị thay đổi thực chiến trong tổ chức.' },
+        { name: 'Huy Trần', slotId: 'mc-exp-2', title: 'AI Transformation Coach', img: 'images/hpc_team_huy_tran.jpg', detail: 'Chuyên gia khai vấn ứng dụng AI — Xây dựng và phát triển AI, ứng dụng AI vào quy trình, hành vi, vai trò, KPI và cách ra quyết định của tổ chức. Hỗ trợ học viên số hóa và tích hợp AI vào hành trình Management Coaching, từ phân tích dữ liệu đến tối ưu hóa giải pháp và đo lường tác động.' },
+        { name: 'Lel Nguyễn', slotId: 'mc-exp-3', title: 'High Performance Coach', img: 'images/hpc_team_lel_nguyen.jpeg', detail: 'Chuyên gia đào tạo Quản lý cấp trung về Quản trị và Dẫn dắt hiệu suất cao. Chịu trách nhiệm nâng cao kỹ năng coaching và khai vấn chuyên sâu cho học viên — từ thiết lập quan hệ tin cậy, đặt câu hỏi chiến lược đến tạo đột phá trong hành vi và tư duy lãnh đạo.' },
+        { name: 'Hưng Nguyễn', slotId: 'mc-exp-4', title: 'Chuyên gia Khai Vấn Quản Trị SME & CVPCC Coach', img: 'images/hpc_team_hung_nguyen.jpeg', detail: 'Chuyên gia khai vấn quản trị dành cho doanh nghiệp vừa và nhỏ. Hỗ trợ học viên chẩn đoán vấn đề, thiết kế chiến lược và triển khai giải pháp phù hợp với đặc thù và nguồn lực SME — từ tái cấu trúc bộ máy đến xây dựng hệ thống quản trị bền vững.' },
+        { name: 'Bùi Ngọc Bình', slotId: 'mc-exp-5', title: 'Chuyên gia Khai Vấn Quản Trị Ecommerce (AMZ)', img: 'images/hpc_team_bui_ngoc_binh.jpg', detail: 'Chuyên gia về khai vấn quản trị và tối ưu hiệu suất trong thương mại điện tử, với nhiều năm trực tiếp xây dựng, vận hành và scale các thương hiệu Amazon Private Label. Founder ECom GreenWay — Đối tác đào tạo chính thức của Amazon Global Selling Việt Nam.' },
+      ],
+      journey: [
+        { badge: 'PHASE 1', badgeColor: '#07121F', badgeBg: 'linear-gradient(180deg,#E7D0A2,#C9A668)', badgeBorder: 'transparent', accent: '#C9A668', date: '18–20/09/2026 — 8h30 đến 17h30', title: '3 Modules Intensive Training — Offline', desc: 'Học tập chuyên sâu, liên tục trong 3 ngày tại khách sạn tiêu chuẩn 5 sao. Hoàn thành 3 Modules — từ nền tảng Management Coaching, chẩn đoán vấn đề quản trị, đến thiết kế chiến lược & giải pháp.', details: ['Module 1: Nền tảng MC & Tư duy Tư vấn Quản trị', 'Module 2: Chẩn đoán Vấn đề & Khai vấn Nhận thức', 'Module 3: Thiết kế Chiến lược & Khai vấn Quyết định', 'Tổ chức tại Khách sạn Ramana — 323 Lê Văn Sỹ, Hồ Chí Minh'] },
+        { badge: 'PHASE 1b', badgeColor: '#07121F', badgeBg: 'linear-gradient(180deg,#E7D0A2,#C9A668)', badgeBorder: 'transparent', accent: '#C9A668', date: '27/09/2026 — 8h30 đến 17h30', title: 'Module 4 — Online qua Zoom', desc: 'Module 4: Thiết kế Dự án 90 ngày & Đo lường Tác động — học online qua Zoom để học viên có thể thực hành trực tiếp công cụ trên máy tính.', details: ['Module 4: Dự án 90 ngày & Đo lường Tác động', 'Online qua Zoom — thực hành trực tiếp trên máy tính'] },
+        { badge: 'PHASE 2', badgeColor: '#A87636', badgeBg: 'transparent', badgeBorder: 'rgba(168,118,54,0.4)', accent: '#B98A48', date: '', title: '4 Buổi Cố vấn Nhóm (Group Mentoring)', desc: 'Trong 90 ngày ứng dụng, bạn sẽ được đồng hành qua 4 buổi cố vấn nhóm — mỗi tháng gặp nhau 1 lần để hỏi đáp, tháo gỡ vướng mắc và chia sẻ kinh nghiệm khi áp dụng vào thực tế.', details: ['Mỗi tháng 1 buổi — hỏi đáp & tháo gỡ vướng mắc thực tế', 'Chia sẻ kinh nghiệm cùng cộng đồng học viên', 'Nhận phản hồi trực tiếp từ chuyên gia'] },
+        { badge: '90 NGÀY ỨNG DỤNG', badgeColor: '#07121F', badgeBg: '#E7D0A2', badgeBorder: 'transparent', accent: '#0D1B2A', date: '', title: 'Dự án Management Coaching thực tế', desc: 'Triển khai dự án Management Coaching 90 ngày trên case quản trị thật — từ chẩn đoán vấn đề, thiết kế giải pháp, đồng hành triển khai, quản trị stakeholder đến đo lường tác động. Trình bày kết quả cuối khóa.', details: ['Mục tiêu 30/60/90 ngày rõ ràng', 'Hỗ trợ follow-up riêng cho tổ chức', 'Trình bày dự án MC — sản phẩm cuối khóa'] },
+      ],
+      hooks: [
+        { title: 'Mentoring 1-1 với Coach Mạnh Hà', desc: 'Cơ hội được mentoring 1-1 trực tiếp với Coach Nguyễn Vũ Mạnh Hà trong suốt 90 ngày ứng dụng — gồm 6 buổi chuyên sâu, hỗ trợ cá nhân hóa lộ trình hành nghề.', value: 'Trị giá 160.000.000 VNĐ', icon: icGold('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>') },
+        { title: 'Cơ hội gia nhập đội ngũ', desc: 'Học viên xuất sắc có cơ hội trở thành thành viên chính thức của Team — được hỗ trợ toàn bộ về năng lực, công cụ và nhân lực để phát triển thành công nghề Management Coaching.', value: 'Qua phỏng vấn đánh giá', icon: icGold('<circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14.5 20c.2-2 1.8-3.5 3.5-3.5s3.3 1.5 3.5 3.5"/>') },
+        { title: 'Học lại miễn phí', desc: 'Riêng học viên khóa đầu tiên được quyền học lại chương trình vào năm sau mà không mất học phí đào tạo — chỉ cần đóng phí logistics tổ chức.', value: 'Đặc quyền khóa 01 duy nhất', icon: icGold('<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>') },
+        { title: 'Ưu đãi Doanh nghiệp', desc: 'Doanh nghiệp đăng ký từ 3 người trở lên sẽ được thiết kế buổi theo sát và hỗ trợ riêng (follow-up riêng) — tối ưu hiệu quả ứng dụng cho tổ chức.', value: 'Đăng ký nhóm từ 3 người', icon: icGold('<path d="M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01M15 11h.01"/>') },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
