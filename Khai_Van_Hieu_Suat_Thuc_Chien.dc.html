@@ -28,26 +28,32 @@
   .rv-l { transform: translateX(-32px); }
   .rv-r { transform: translateX(32px); }
   .rv-l.in, .rv-r.in { transform: none; }
+
+  /* ---- Mobile responsive (added) ---- */
+  @media (max-width: 960px) {
+    #kv-root [style*="repeat(5"] { grid-template-columns: repeat(3, 1fr) !important; }
+    #kv-root [style*="repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+    #kv-root [style*="repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
+    #kv-root [style*="1.05fr"], #kv-root [style*="1.08fr"], #kv-root [style*="1.18fr"],
+    #kv-root [style*="0.95fr 1.05fr"], #kv-root [style*="0.9fr 1.1fr"],
+    #kv-root [style*="grid-template-columns: 1fr 1fr"], #kv-root [style*="210px 1fr"] { grid-template-columns: 1fr !important; }
+    #kv-root section { padding-top: 72px !important; padding-bottom: 72px !important; }
+    #kv-root section > div[style*="92px 32px"], #kv-root section > div[style*="84px 32px"] { padding-top: 60px !important; padding-bottom: 52px !important; }
+    #kv-root h1 { font-size: clamp(32px, 8vw, 46px) !important; line-height: 1.12 !important; }
+    #kv-root h2 { font-size: clamp(26px, 6vw, 38px) !important; line-height: 1.2 !important; }
+  }
+  @media (max-width: 620px) {
+    #kv-root [style*="repeat(5"], #kv-root [style*="repeat(4"], #kv-root [style*="repeat(3"], #kv-root [style*="repeat(2"] { grid-template-columns: 1fr !important; }
+    #kv-root section { padding-top: 56px !important; padding-bottom: 56px !important; }
+    #kv-root [style*="padding: 0 32px"] { padding-left: 22px !important; padding-right: 22px !important; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
 <div id="kv-root" style="font-family: Montserrat, system-ui, sans-serif; color: #D9E0E7; background: #07121F; overflow-x: hidden;">
 
-  <!-- ============ HEADER ============ -->
-  <header data-screen-label="Header" style="position: sticky; top: 0; z-index: 50; background: rgba(7,18,31,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,166,104,0.14);">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 84px; display: flex; align-items: center; justify-content: space-between;">
-      <a href="./index.html" style="display: flex; align-items: center;">
-        <img src="assets/logo-wordmark-gold.png" alt="GoWise Partners — Strategic Management Coaching" style="height: 46px; width: auto; display: block;">
-      </a>
-      <nav style="display: flex; align-items: center; gap: 34px;">
-        <a href="#van-de" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">VẤN ĐỀ</a>
-        <a href="#chuong-trinh" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">CHƯƠNG TRÌNH</a>
-        <a href="#ket-qua" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">KẾT QUẢ</a>
-        <a href="#noi-dung" style="color: #D9E0E7; font-size: 12.5px; letter-spacing: 0.06em; font-weight: 500;">NỘI DUNG</a>
-      </nav>
-      <a href="#dang-ky" style="background: linear-gradient(180deg, #D7B16E, #B98A48); color: #07121F; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; padding: 12px 22px;" style-hover="filter: brightness(1.06); transform: translateY(-1px);">ĐĂNG KÝ THAM GIA</a>
-    </div>
-  </header>
+  <!-- ============ HEADER (shared) ============ -->
+  <dc-import name="Header" hint-size="100%,78px"></dc-import>
 
   <!-- ============ HERO ============ -->
   <section id="top" data-screen-label="Hero" style="position: relative; background: radial-gradient(120% 90% at 78% 22%, #12304C 0%, #0D1B2A 42%, #07121F 100%);">
@@ -277,40 +283,8 @@
     </div>
   </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer data-screen-label="Footer" style="background: #07121F; border-top: 1px solid rgba(201,166,104,0.14); padding: 60px 0 38px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1.7fr 1fr 1fr; gap: 40px;">
-      <div>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(201,166,104,0.28);">
-            <image-slot id="kv-mark-footer" src="assets/logo-mark.png" shape="circle" fit="contain" placeholder="Logo"></image-slot>
-          </div>
-          <div style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: #F7F1E7;">GoWise Partners</div>
-        </div>
-        <p style="font-size: 13.5px; line-height: 1.7; color: #8193A4; margin-top: 20px; max-width: 320px;">Khai vấn Hiệu suất Thực chiến — chương trình 1 ngày biến mục tiêu thành hành vi và kết quả có thể nhìn thấy.</p>
-      </div>
-      <div>
-        <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">CHƯƠNG TRÌNH</div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <a href="#van-de" style="color: #D9E0E7; font-size: 14px;">Vấn đề</a>
-          <a href="#chuong-trinh" style="color: #D9E0E7; font-size: 14px;">Nội dung giải quyết</a>
-          <a href="#ket-qua" style="color: #D9E0E7; font-size: 14px;">Kết quả đạt được</a>
-          <a href="#noi-dung" style="color: #D9E0E7; font-size: 14px;">3 module</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">LIÊN HỆ</div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <a href="#dang-ky" style="color: #D9E0E7; font-size: 14px;">Đăng ký tham gia</a>
-          <a href="#dang-ky" style="color: #D9E0E7; font-size: 14px;">hello@gowisepartners.com</a>
-        </div>
-      </div>
-    </div>
-    <div style="max-width: 1200px; margin: 44px auto 0; padding: 24px 32px 0; border-top: 1px solid rgba(201,166,104,0.1); display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 0.14em; color: #4c6076;">
-      <span>© 2026 GOWISE PARTNERS</span>
-      <span>KHAI VẤN HIỆU SUẤT THỰC CHIẾN</span>
-    </div>
-  </footer>
+  <!-- ============ FOOTER (shared) ============ -->
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;goldAccent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C9A668&quot;,&quot;options&quot;:[&quot;#C9A668&quot;,&quot;#D7B16E&quot;,&quot;#B98A48&quot;,&quot;#A87636&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;showChallengeNumbers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">

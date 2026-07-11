@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  #gp-ftr a { text-decoration: none; }
+  #gp-ftr .gp-flink { color: #D9E0E7; font-size: 14px; transition: color 0.2s; }
+  #gp-ftr .gp-flink:hover { color: #E7D0A2; }
+  #gp-ftr .gp-fgrid { display: grid; grid-template-columns: 1.7fr 1.1fr 1.2fr; gap: 44px; }
+  #gp-ftr .gp-fbottom { display: flex; justify-content: space-between; gap: 16px; }
+  @media (max-width: 820px) {
+    #gp-ftr .gp-fgrid { grid-template-columns: 1fr; gap: 34px; }
+    #gp-ftr .gp-fbottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</helmet>
+<footer id="gp-ftr" data-screen-label="Footer" style="background: #07121F; border-top: 1px solid rgba(201,166,104,0.14); padding: 64px 0 40px; font-family: Montserrat, system-ui, sans-serif;">
+  <div class="gp-fgrid" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+    <div>
+      <img src="assets/logo-wordmark-gold.png" alt="GoWise Partners — Strategic Management Coaching" style="height: 42px; width: auto; display: block;">
+      <p style="font-size: 13.5px; line-height: 1.7; color: #8193A4; margin-top: 20px; max-width: 320px;">Strategic Management Coaching — Đối tác hiệu suất chiến lược của bạn. Kết hợp tư duy quản trị, nghệ thuật khai vấn và công nghệ AI.</p>
+    </div>
+
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">HỆ SINH THÁI</div>
+      <div style="display: flex; flex-direction: column; gap: 13px;">
+        <a href="Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html" class="gp-flink">Chuyên gia Khai vấn Hiệu suất cao</a>
+        <a href="Khai-Van_Quan_Tri_Chuyen_Nghiep.dc.html" class="gp-flink">Chuyên gia Khai vấn Quản trị</a>
+        <a href="Khai_Van_Hieu_Suat_Thuc_Chien.dc.html" class="gp-flink">WS Khai vấn Hiệu suất cao thực chiến</a>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">LIÊN HỆ</div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <div style="font-size: 11px; letter-spacing: 0.06em; color: #8193A4; margin-bottom: 4px;">Hotline / Zalo</div>
+          <a href="tel:0868680793" style="color: #F7F1E7; font-size: 17px; font-weight: 600; font-family: 'Playfair Display', serif;">0868 680 793</a>
+          <span style="color: #8193A4; font-size: 13px;"> · Mr. Huy</span>
+        </div>
+        <a href="mailto:info@gwp.vn" class="gp-flink">info@gwp.vn</a>
+        <div style="display: flex; gap: 18px; margin-top: 4px;">
+          <a href="#" class="gp-flink" style="font-size: 13px;">LinkedIn</a>
+          <a href="#" class="gp-flink" style="font-size: 13px;">Facebook</a>
+          <a href="#" class="gp-flink" style="font-size: 13px;">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gp-fbottom" style="max-width: 1200px; margin: 48px auto 0; padding: 24px 24px 0; border-top: 1px solid rgba(201,166,104,0.1); font-size: 11px; letter-spacing: 0.14em; color: #4C6076;">
+    <span>© 2026 GOWISE PARTNERS</span>
+    <span>STRATEGIC MANAGEMENT COACHING</span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:420}}"></script>
+</body>
+</html>

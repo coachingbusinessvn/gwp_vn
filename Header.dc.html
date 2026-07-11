@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  #gp-hdr a { text-decoration: none; }
+  #gp-hdr .gp-navlink { color: #D9E0E7; font-size: 13px; letter-spacing: 0.05em; font-weight: 500; transition: color 0.2s; }
+  #gp-hdr .gp-navlink:hover { color: #E7D0A2; }
+  #gp-hdr .gp-drop-item:hover { background: rgba(201,166,104,0.08); color: #E7D0A2 !important; }
+  #gp-hdr .gp-burger { display: none; }
+  @media (max-width: 940px) {
+    #gp-hdr .gp-desktop-nav { display: none !important; }
+    #gp-hdr .gp-desktop-cta { display: none !important; }
+    #gp-hdr .gp-burger { display: inline-flex !important; }
+  }
+  @media (min-width: 941px) {
+    #gp-hdr .gp-mobile-panel { display: none !important; }
+  }
+</style>
+</helmet>
+<header id="gp-hdr" data-screen-label="Header" style="position: sticky; top: 0; z-index: 100; background: rgba(7,18,31,0.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,166,104,0.14);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+
+    <a href="index.dc.html" style="display: flex; align-items: center; flex-shrink: 0;">
+      <img src="assets/logo-wordmark-gold.png" alt="GoWise Partners — Strategic Management Coaching" style="height: 42px; width: auto; display: block;">
+    </a>
+
+    <nav class="gp-desktop-nav" style="display: flex; align-items: center; gap: 36px;">
+      <a href="index.dc.html" class="gp-navlink" data-nav="home">Trang chủ</a>
+
+      <div style="position: relative;" onMouseEnter="{{ openTrain }}" onMouseLeave="{{ closeTrain }}">
+        <button type="button" data-nav="train" onClick="{{ toggleTrain }}" style="display: inline-flex; align-items: center; gap: 7px; background: none; border: 0; cursor: pointer; font-family: Montserrat, sans-serif; color: #D9E0E7; font-size: 13px; letter-spacing: 0.05em; font-weight: 500; padding: 0;">
+          Đào tạo
+          <span style="font-size: 9px; opacity: 0.8;">▼</span>
+        </button>
+        <div id="gp-train-menu" style="display: none; position: absolute; top: calc(100% + 18px); left: 50%; transform: translateX(-50%); width: 320px; background: #0D1B2A; border: 1px solid rgba(201,166,104,0.22); border-radius: 12px; box-shadow: 0 24px 60px rgba(0,0,0,0.55); padding: 10px; z-index: 120;">
+          <div style="position: absolute; top: -18px; left: 0; right: 0; height: 18px;"></div>
+          <a href="Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html" class="gp-drop-item" style="display: block; color: #D9E0E7; font-size: 13.5px; font-weight: 500; padding: 13px 16px; border-radius: 8px; line-height: 1.4; transition: background 0.2s, color 0.2s;">Chuyên gia Khai vấn Hiệu suất cao</a>
+          <a href="Khai-Van_Quan_Tri_Chuyen_Nghiep.dc.html" class="gp-drop-item" style="display: block; color: #D9E0E7; font-size: 13.5px; font-weight: 500; padding: 13px 16px; border-radius: 8px; line-height: 1.4; transition: background 0.2s, color 0.2s;">Chuyên gia Khai vấn Quản trị</a>
+          <a href="Khai_Van_Hieu_Suat_Thuc_Chien.dc.html" class="gp-drop-item" style="display: block; color: #D9E0E7; font-size: 13.5px; font-weight: 500; padding: 13px 16px; border-radius: 8px; line-height: 1.4; transition: background 0.2s, color 0.2s;">WS Khai vấn Hiệu suất cao thực chiến</a>
+        </div>
+      </div>
+
+      <a href="Lien_He.dc.html" class="gp-navlink" data-nav="contact">Liên hệ</a>
+    </nav>
+
+    <a href="Lien_He.dc.html" class="gp-desktop-cta" style="flex-shrink: 0; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 12px 22px; transition: filter 0.2s, transform 0.2s;" style-hover="filter: brightness(1.06); transform: translateY(-1px);">Đặt lịch tư vấn</a>
+
+    <button type="button" class="gp-burger" onClick="{{ toggleMobile }}" aria-label="Menu" style="width: 46px; height: 46px; align-items: center; justify-content: center; background: none; border: 1px solid rgba(201,166,104,0.3); border-radius: 8px; cursor: pointer;">
+      <span style="display: block; width: 20px; height: 14px; position: relative;">
+        <span style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #E7D0A2;"></span>
+        <span style="position: absolute; top: 6px; left: 0; width: 100%; height: 2px; background: #E7D0A2;"></span>
+        <span style="position: absolute; top: 12px; left: 0; width: 100%; height: 2px; background: #E7D0A2;"></span>
+      </span>
+    </button>
+  </div>
+
+  <div id="gp-mnav" class="gp-mobile-panel" style="display: none; border-top: 1px solid rgba(201,166,104,0.14); background: rgba(7,18,31,0.98); padding: 10px 24px 22px;">
+    <a href="index.dc.html" class="gp-navlink" style="display: block; padding: 15px 0; border-bottom: 1px solid rgba(201,166,104,0.1); font-size: 15px;">Trang chủ</a>
+    <button type="button" onClick="{{ toggleTrainMobile }}" style="width: 100%; text-align: left; display: flex; align-items: center; justify-content: space-between; background: none; border: 0; border-bottom: 1px solid rgba(201,166,104,0.1); cursor: pointer; font-family: Montserrat, sans-serif; color: #D9E0E7; font-size: 15px; font-weight: 500; padding: 15px 0;">
+      Đào tạo
+      <span style="font-size: 10px; color: #B98A48;">▼</span>
+    </button>
+    <div id="gp-train-mobile" style="display: none; flex-direction: column; padding: 6px 0 6px 14px; border-bottom: 1px solid rgba(201,166,104,0.1);">
+      <a href="Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html" style="color: #B7C2CE; font-size: 13.5px; padding: 11px 0; line-height: 1.4;">Chuyên gia Khai vấn Hiệu suất cao</a>
+      <a href="Khai-Van_Quan_Tri_Chuyen_Nghiep.dc.html" style="color: #B7C2CE; font-size: 13.5px; padding: 11px 0; line-height: 1.4;">Chuyên gia Khai vấn Quản trị</a>
+      <a href="Khai_Van_Hieu_Suat_Thuc_Chien.dc.html" style="color: #B7C2CE; font-size: 13.5px; padding: 11px 0; line-height: 1.4;">WS Khai vấn Hiệu suất cao thực chiến</a>
+    </div>
+    <a href="Lien_He.dc.html" class="gp-navlink" style="display: block; padding: 15px 0; border-bottom: 1px solid rgba(201,166,104,0.1); font-size: 15px;">Liên hệ</a>
+    <a href="Lien_He.dc.html" style="display: inline-flex; margin-top: 18px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 13px 24px;">Đặt lịch tư vấn</a>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:300}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this.highlightActive();
+  }
+
+  highlightActive() {
+    try {
+      const file = decodeURIComponent((location.pathname.split('/').pop() || '').toLowerCase());
+      let key = 'home';
+      if (/lien_he|lien-he/.test(file)) key = 'contact';
+      else if (/chuyen_gia|quan_tri|thuc_chien|hieu_suat/.test(file)) key = 'train';
+      const root = document.getElementById('gp-hdr');
+      if (!root) return;
+      const el = root.querySelector('[data-nav="' + key + '"]');
+      if (el) { el.style.color = '#E7D0A2'; el.style.fontWeight = '600'; }
+    } catch (e) {}
+  }
+
+  openTrain() { const d = document.getElementById('gp-train-menu'); if (d) d.style.display = 'block'; }
+  closeTrain() { const d = document.getElementById('gp-train-menu'); if (d) d.style.display = 'none'; }
+  toggleTrain() {
+    const d = document.getElementById('gp-train-menu');
+    if (d) d.style.display = (d.style.display === 'block') ? 'none' : 'block';
+  }
+  toggleMobile() {
+    const p = document.getElementById('gp-mnav');
+    if (p) p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+  }
+  toggleTrainMobile() {
+    const d = document.getElementById('gp-train-mobile');
+    if (d) d.style.display = (d.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  renderVals() {
+    return {
+      openTrain: () => this.openTrain(),
+      closeTrain: () => this.closeTrain(),
+      toggleTrain: () => this.toggleTrain(),
+      toggleMobile: () => this.toggleMobile(),
+      toggleTrainMobile: () => this.toggleTrainMobile(),
+    };
+  }
+}
+</script>
+</body>
+</html>

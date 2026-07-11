@@ -31,40 +31,41 @@
     .gp-reveal, .gp-reveal--l, .gp-reveal--r { opacity: 1 !important; transform: none !important; transition: none; }
     [style*="gpSpin"], [style*="gpFloat"] { animation: none !important; }
   }
+
+  @media (max-width: 900px) {
+    .gp-hero-grid { grid-template-columns: 1fr !important; gap: 38px !important; padding-top: 56px !important; padding-bottom: 52px !important; }
+    .gp-hero-visual { height: 420px !important; max-width: 360px; margin: 0 auto; }
+    .gp-2col { grid-template-columns: 1fr !important; gap: 44px !important; }
+    .gp-3col { grid-template-columns: 1fr 1fr !important; }
+    .gp-experts-grid { grid-template-columns: repeat(3, 1fr) !important; }
+    .gp-lead-card { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 640px) {
+    .gp-3col { grid-template-columns: 1fr !important; }
+    .gp-experts-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .gp-hero-visual { height: 380px !important; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
 <div id="gp-root" style="font-family: Montserrat, system-ui, sans-serif; color: #D9E0E7; background: #07121F; overflow-x: hidden;">
 
-  <!-- ============ HEADER ============ -->
-  <header data-screen-label="Header" style="position: sticky; top: 0; z-index: 50; background: rgba(7,18,31,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,166,104,0.14);">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 84px; display: flex; align-items: center; justify-content: space-between;">
-      <a href="#top" style="display: flex; align-items: center;">
-        <img src="assets/logo-wordmark-gold.png" alt="GoWise Partners — Strategic Management Coaching" style="height: 46px; width: auto; display: block;">
-      </a>
-      <nav style="display: flex; align-items: center; gap: 32px;">
-        <a href="./Khai_Van_Hieu_Suat_Thuc_Chien.dc.html" style="color: #D9E0E7; font-size: 13px; letter-spacing: 0.04em; font-weight: 500;">Workshop</a>
-        <a href="./Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html" style="color: #D9E0E7; font-size: 13px; letter-spacing: 0.04em; font-weight: 500;">HPC</a>
-        <a href="./Khai_Van_Quan_Tri_Chuyen_Nghiep.dc.html" style="color: #D9E0E7; font-size: 13px; letter-spacing: 0.04em; font-weight: 500;">Management Coaching</a>
-        <!-- <a href="#contact" style="color: #D9E0E7; font-size: 13px; letter-spacing: 0.04em; font-weight: 500;">Nền tảng AI</a> -->
-      </nav>
-      <a href="#contact" style="background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 12px 22px;" style-hover="filter: brightness(1.06); transform: translateY(-1px);">Liên hệ Tư vấn</a>
-    </div>
-  </header>
+  <!-- ============ HEADER (shared) ============ -->
+  <dc-import name="Header" hint-size="100%,78px"></dc-import>
 
   <!-- ============ HERO ============ -->
   <section id="top" data-screen-label="Hero" style="position: relative; background: radial-gradient(120% 90% at 78% 22%, #12304C 0%, #0D1B2A 42%, #07121F 100%);">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 92px 32px 78px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;">
+    <div class="gp-hero-grid" style="max-width: 1200px; margin: 0 auto; padding: 92px 32px 78px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;">
       <div style="animation: gpFade 0.8s ease both;">
         <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 26px;">BƯỚC ĐỘT PHÁ CHO SỰ PHÁT TRIỂN BỀN VỮNG</div>
-        <h1 style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 60px; line-height: 1.32; color: #F7F1E7; letter-spacing: -0.01em;">Đối Tác Hiệu Suất <span style="color: #E7D0A2;">Chiến Lược</span> Của Bạn.</h1>
+        <h1 style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: clamp(34px, 8.5vw, 60px); line-height: 1.14; color: #F7F1E7; letter-spacing: -0.01em;">Đối Tác Hiệu Suất <span style="color: #E7D0A2;">Chiến Lược</span> Của Bạn.</h1>
         <p style="font-size: 18px; line-height: 1.7; color: #D9E0E7; max-width: 500px; margin-top: 28px;">Không dừng lại ở đào tạo. Chúng tôi kết hợp <span style="color: #E7D0A2; font-weight: 500;">tư duy quản trị</span>, nghệ thuật khai vấn và sức mạnh <span style="color: #E7D0A2; font-weight: 500;">công nghệ AI</span> để chuyển hóa mục tiêu thành kết quả đo lường được cho Cá nhân và Tổ chức.</p>
         <div style="display: flex; gap: 16px; margin-top: 38px; flex-wrap: wrap;">
           <a href="#solutions" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; padding: 17px 28px;" style-hover="filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,166,104,0.28);">Dành cho Tổ chức &amp; Doanh nghiệp <span style="font-size: 15px;">→</span></a>
           <a href="#solutions" style="display: inline-flex; align-items: center; background: transparent; color: #F7F1E7; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; padding: 17px 28px; border: 1px solid rgba(201,166,104,0.4);" style-hover="border-color: #C9A668; background: rgba(201,166,104,0.06);">Dành cho Cá nhân &amp; Đội nhóm</a>
         </div>
       </div>
-      <div style="position: relative; height: 480px; animation: gpFade 0.9s ease 0.15s both;">
+      <div class="gp-hero-visual" style="position: relative; height: 480px; animation: gpFade 0.9s ease 0.15s both;">
         <div style="position: absolute; top: 50%; left: 50%; width: 470px; height: 470px; margin: -235px 0 0 -235px; border: 1px solid rgba(201,166,104,0.16); border-radius: 50%; animation: gpSpin 44s linear infinite;">
           <div style="position: absolute; top: -4px; left: 50%; width: 7px; height: 7px; margin-left: -3px; border-radius: 50%; background: #C9A668;"></div>
         </div>
@@ -100,10 +101,10 @@
 
   <!-- ============ INTRO / ABOUT GWP ============ -->
   <section data-screen-label="Giới thiệu" style="background: #F7F1E7; padding: 104px 0; color: #0D1B2A;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
+    <div class="gp-2col" style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
       <div class="gp-reveal gp-reveal--l" style="min-width: 0;">
         <div style="font-size: 12px; letter-spacing: 0.24em; color: #A87636; font-weight: 600; margin-bottom: 20px;">VỀ GOWISE PARTNERS</div>
-        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 40px; line-height: 1.32; color: #07121F;">Không chỉ đào tạo — chúng tôi <span style="color: #A87636;">đồng hành đến kết quả.</span></h2>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(28px, 6vw, 40px); line-height: 1.2; color: #07121F;">Không chỉ đào tạo — chúng tôi <span style="color: #A87636;">đồng hành đến kết quả.</span></h2>
         <p style="font-size: 16px; line-height: 1.8; color: #45505C; margin-top: 24px;">GoWise Partners là đối tác hiệu suất chiến lược, kết hợp <span style="color: #07121F; font-weight: 500;">tư duy quản trị</span>, nghệ thuật khai vấn và <span style="color: #07121F; font-weight: 500;">công nghệ AI</span>. Chúng tôi đồng hành cùng lãnh đạo và đội ngũ để chuyển hóa mục tiêu thành kết quả đo lường được — cho cả cá nhân và tổ chức.</p>
         <div style="display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap;">
           <div>
@@ -138,11 +139,11 @@
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
       <div class="gp-reveal" style="text-align: center; max-width: 700px; margin: 0 auto 48px;">
         <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">HỆ SINH THÁI GIẢI PHÁP</div>
-        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 44px; line-height: 1.32; color: #F7F1E7;">Giải pháp Toàn diện từ<br><span style="color: rgb(231, 208, 162);">Cá nhân đến Tổ chức.</span></h2>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(30px, 6vw, 44px); line-height: 1.18; color: #F7F1E7;">Giải pháp Toàn diện từ<br><span style="color: rgb(231, 208, 162);">Cá nhân đến Tổ chức.</span></h2>
       </div>
 
       <!-- Two parallel solution pillars -->
-      <div data-stagger="" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch;">
+      <div data-stagger="" class="gp-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch;">
 
         <!-- 01 · Organization -->
         <div class="gp-reveal" style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.2); border-radius: 18px; padding: 46px 44px; display: flex; flex-direction: column; transition: border-color 0.35s, background 0.35s, transform 0.35s;" style-hover="border-color: rgba(201,166,104,0.5); background: #102338; transform: translateY(-4px);">
@@ -154,7 +155,7 @@
           <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: #F7F1E7; margin-top: 12px; line-height: 1.32;">Khai Vấn Quản Trị Chuyên Nghiệp</h3>
           <p style="font-size: 15px; line-height: 1.75; color: #8193A4; margin-top: 16px; flex-grow: 1;">Thiết kế chuyên biệt cho CEO, C-Level, Top Leaders và Tư vấn nội bộ. Giải quyết trực tiếp các bài toán quản trị hệ thống, kết hợp tư duy tư vấn và nghệ thuật khai vấn để tối ưu chi phí và nâng cấp hiệu suất doanh nghiệp.</p>
           <div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; margin-top: 22px; font-size: 12px; letter-spacing: 0.04em; color: #E7D0A2; font-weight: 600; border: 1px solid rgba(201,166,104,0.3); padding: 8px 14px;">90 ngày đồng hành thực chiến</div>
-          <a href="./Khai_Van_Quan_Tri_Chuyen_Nghiep.dc.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; margin-top: 26px; font-size: 13px; letter-spacing: 0.04em; font-weight: 700; color: #07121F; background: linear-gradient(180deg, #E7D0A2, #C9A668); padding: 15px 26px;" style-hover="filter: brightness(1.05); transform: translateY(-2px);">Khám phá Chương trình<span style="font-size: 15px;">→</span></a>
+          <a href="Khai-Van_Quan_Tri_Chuyen_Nghiep.dc.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; margin-top: 26px; font-size: 13px; letter-spacing: 0.04em; font-weight: 700; color: #07121F; background: linear-gradient(180deg, #E7D0A2, #C9A668); padding: 15px 26px;" style-hover="filter: brightness(1.05); transform: translateY(-2px);">Khám phá Chương trình<span style="font-size: 15px;">→</span></a>
         </div>
 
         <!-- 02 · Personal / High Performance -->
@@ -167,7 +168,7 @@
           <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: #F7F1E7; margin-top: 12px; line-height: 1.32;">Chuyên gia Khai vấn Hiệu suất cao</h3>
           <p style="font-size: 15px; line-height: 1.75; color: #8193A4; margin-top: 16px; flex-grow: 1;">Khóa học bản lề cho Coach chuyên nghiệp, Manager và cá nhân theo đuổi hiệu suất cao. Làm chủ mô hình ORACLE cùng bộ công cụ chẩn đoán và khai vấn hiệu suất toàn diện để tạo đột phá bền vững.</p>
           <div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; margin-top: 22px; font-size: 12px; letter-spacing: 0.04em; color: #E7D0A2; font-weight: 600; border: 1px solid rgba(201,166,104,0.3); padding: 8px 14px;">3 ngày Intensive · Đầy đủ công cụ để triển khai</div>
-          <a href="./Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; margin-top: 26px; font-size: 13px; letter-spacing: 0.04em; font-weight: 700; color: #07121F; background: linear-gradient(180deg, #E7D0A2, #C9A668); padding: 15px 26px;" style-hover="filter: brightness(1.05); transform: translateY(-2px);">Khám phá Chương trình<span style="font-size: 15px;">→</span></a>
+          <a href="Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; margin-top: 26px; font-size: 13px; letter-spacing: 0.04em; font-weight: 700; color: #07121F; background: linear-gradient(180deg, #E7D0A2, #C9A668); padding: 15px 26px;" style-hover="filter: brightness(1.05); transform: translateY(-2px);">Khám phá Chương trình<span style="font-size: 15px;">→</span></a>
         </div>
 
       </div>
@@ -179,12 +180,12 @@
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
       <div class="gp-reveal" style="text-align: center; max-width: 640px; margin: 0 auto 60px;">
         <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">ĐỘI NGŨ</div>
-        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 44px; line-height: 1.32; color: #F7F1E7;">Đội ngũ&nbsp;<span style="color: rgb(231, 208, 162);">Chuyên gia &amp; Cố vấn.</span></h2>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(30px, 6vw, 44px); line-height: 1.18; color: #F7F1E7;">Đội ngũ&nbsp;<span style="color: rgb(231, 208, 162);">Chuyên gia &amp; Cố vấn.</span></h2>
       </div>
       <!-- Leadership -->
-      <div data-stagger="" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+      <div data-stagger="" class="gp-2col" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
         <sc-for list="{{ leads }}" as="t" hint-placeholder-count="2">
-          <div class="gp-reveal" style="background: #07121F; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; overflow: hidden; display: grid; grid-template-columns: 210px 1fr; transition: border-color 0.35s, transform 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); transform: translateY(-4px);">
+          <div class="gp-reveal gp-lead-card" style="background: #07121F; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; overflow: hidden; display: grid; grid-template-columns: 210px 1fr; transition: border-color 0.35s, transform 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); transform: translateY(-4px);">
             <div style="position: relative; background: #102338; min-height: 280px;">
               <image-slot id="{{ t.slot }}" src="{{ t.img }}" shape="rect" fit="cover" position="top" placeholder="{{ t.placeholder }}"></image-slot>
               <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(13,27,42,0) 62%, rgba(7,18,31,0.42) 100%);"></div>
@@ -203,7 +204,7 @@
       <div class="gp-reveal" style="text-align: center; font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin: 58px 0 30px; display: none">ĐỘI NGŨ CHUYÊN GIA &amp; CỐ VẤN</div>
 
       <!-- Experts -->
-      <div data-stagger="" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-top: 30px; margin-bottom: 30px">
+      <div data-stagger="" class="gp-experts-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-top: 30px; margin-bottom: 30px">
         <sc-for list="{{ experts }}" as="e" hint-placeholder-count="5">
           <div class="gp-reveal" style="background: #07121F; border: 1px solid rgba(201,166,104,0.16); border-radius: 16px; padding: 30px 22px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: border-color 0.35s, background 0.35s, transform 0.35s;" style-hover="border-color: rgba(201,166,104,0.45); background: #102338; transform: translateY(-4px);">
             <div style="width: 84px; height: 84px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(201,166,104,0.3); margin-bottom: 16px;">
@@ -224,11 +225,11 @@
       <div class="gp-reveal" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 52px;">
         <div style="max-width: 640px;">
           <div style="font-size: 12px; letter-spacing: 0.24em; color: #A87636; font-weight: 600; margin-bottom: 20px;">GÓC NHÌN CHUYÊN SÂU</div>
-          <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 42px; line-height: 1.32; color: #07121F;">Kiến thức &amp; bài viết <span style="color: rgb(168, 118, 54);">về Khai vấn Quản trị.</span></h2>
+          <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(28px, 6vw, 42px); line-height: 1.2; color: #07121F;">Kiến thức &amp; bài viết <span style="color: rgb(168, 118, 54);">về Khai vấn Quản trị.</span></h2>
         </div>
         <a href="#insights" style="font-size: 13px; letter-spacing: 0.04em; font-weight: 600; color: #A87636; white-space: nowrap;" style-hover="color: #07121F;">Xem tất cả bài viết →</a>
       </div>
-      <div data-stagger="" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;">
+      <div data-stagger="" class="gp-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;">
         <sc-for list="{{ articles }}" as="a" hint-placeholder-count="3">
           <a href="{{ a.href }}" class="gp-reveal" style="display: flex; flex-direction: column; background: #ffffff; border: 1px solid rgba(13,27,42,0.08); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(7,18,31,0.06); transition: transform 0.35s, box-shadow 0.35s;" style-hover="transform: translateY(-5px); box-shadow: 0 22px 46px rgba(7,18,31,0.12);">
             <div style="position: relative; height: 190px; background: #E7E0D2;">
@@ -251,60 +252,16 @@
   <section id="contact" data-screen-label="Contact" style="background: radial-gradient(110% 140% at 50% 0%, #12304C 0%, #0D1B2A 55%, #07121F 100%); padding: 118px 0;">
     <div class="gp-reveal" style="max-width: 860px; margin: 0 auto; padding: 0 32px; text-align: center;">
       <div style="font-size: 12px; letter-spacing: 0.26em; color: #C9A668; font-weight: 600; margin-bottom: 26px;">BẮT TAY HỢP TÁC</div>
-      <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 50px; line-height: 1.32; color: #F7F1E7;">Bạn đã sẵn sàng giải quyết <span style="color: #E7D0A2;">bài toán cốt lõi</span> của doanh nghiệp?</h2>
+      <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(32px, 7.5vw, 50px); line-height: 1.18; color: #F7F1E7;">Bạn đã sẵn sàng giải quyết <span style="color: #E7D0A2;">bài toán cốt lõi</span> của doanh nghiệp?</h2>
       <p style="font-size: 17px; line-height: 1.7; color: #D9E0E7; margin-top: 24px; max-width: 620px; margin-left: auto; margin-right: auto;">Kết nối trực tiếp với GWP để nhận tham vấn chiến lược. Chúng tôi không đào tạo lý thuyết - chúng tôi là đối tác giúp bạn tối ưu chi phí quản trị và nâng tầm hiệu suất hệ thống.</p>
       <div style="display: flex; gap: 16px; justify-content: center; margin-top: 42px; flex-wrap: wrap;">
-        <a href="#contact" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; padding: 18px 34px;" style-hover="filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,166,104,0.3);">Đăng ký Tham vấn Chiến lược 1:1 <span style="font-size: 15px;">→</span></a>
+        <a href="Lien_He.dc.html" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; padding: 18px 34px;" style-hover="filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,166,104,0.3);">Đăng ký Tham vấn Chiến lược 1:1 <span style="font-size: 15px;">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer data-screen-label="Footer" style="background: #07121F; border-top: 1px solid rgba(201,166,104,0.14); padding: 64px 0 40px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1.6fr 1fr 1.1fr 1.1fr; gap: 40px;">
-      <div>
-        <img src="assets/logo-wordmark-gold.png" alt="GoWise Partners — Strategic Management Coaching" style="height: 42px; width: auto; display: block;">
-        <p style="font-size: 13.5px; line-height: 1.7; color: #8193A4; margin-top: 20px; max-width: 300px;">Strategic Management Coaching - Đối tác hiệu suất chiến lược của bạn.</p>
-      </div>
-      <div>
-        <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">HỆ SINH THÁI</div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <a href="./Khai_Van_Quan_Tri_Chuyen_Nghiep.dc.html" style="color: #D9E0E7; font-size: 14px;">Khai Vấn Quản Trị Chuyên Nghiệp</a>
-          <a href="./Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html" style="color: #D9E0E7; font-size: 14px;">Chuyên gia Khai vấn Hiệu suất cao</a>
-          <a href="./Khai_Van_Hieu_Suat_Thuc_Chien.dc.html" style="color: #D9E0E7; font-size: 14px;">Khai vấn Hiệu suất Thực chiến</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">VỊ THẾ MẠNG LƯỚI</div>
-        <div style="display: flex; flex-direction: column; gap: 14px;">
-          <div>
-            <div style="font-size: 13px; color: #F7F1E7; font-weight: 600;">Trụ sở Miền Nam</div>
-            <div style="font-size: 12.5px; color: #8193A4; margin-top: 3px;">TP. Hồ Chí Minh</div>
-          </div>
-          <div>
-            <div style="font-size: 13px; color: #F7F1E7; font-weight: 600;">Văn phòng đại diện Miền Bắc</div>
-            <div style="font-size: 12.5px; color: #8193A4; margin-top: 3px;">Hà Nội</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div style="font-size: 11px; letter-spacing: 0.2em; color: #B98A48; font-weight: 600; margin-bottom: 18px;">LIÊN HỆ</div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <a href="tel:+84" style="color: #D9E0E7; font-size: 14px;">Hotline</a>
-          <a href="mailto:info@gwp.vn" style="color: #D9E0E7; font-size: 14px;">info@gwp.vn</a>
-          <div style="display: flex; gap: 18px; margin-top: 6px;">
-            <a href="#" style="color: #D9E0E7; font-size: 13px;">LinkedIn</a>
-            <a href="#" style="color: #D9E0E7; font-size: 13px;">Facebook</a>
-            <a href="#" style="color: #D9E0E7; font-size: 13px;">YouTube</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="max-width: 1200px; margin: 48px auto 0; padding: 24px 32px 0; border-top: 1px solid rgba(201,166,104,0.1); display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 0.14em; color: #4c6076;">
-      <span>© 2026 GOWISE PARTNERS</span>
-      <span>STRATEGIC MANAGEMENT COACHING</span>
-    </div>
-  </footer>
+  <!-- ============ FOOTER (shared) ============ -->
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;goldAccent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C9A668&quot;,&quot;options&quot;:[&quot;#C9A668&quot;,&quot;#D7B16E&quot;,&quot;#B98A48&quot;,&quot;#A87636&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
