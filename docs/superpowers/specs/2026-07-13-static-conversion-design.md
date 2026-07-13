@@ -1,171 +1,325 @@
-# Design: Static conversion of GoWise Partners website
+# Design: Parity-first static conversion of GoWise Partners
 
 **Date:** 2026-07-13
-**Status:** Approved (brainstorming complete)
-**Branch/worktree:** to be created — `refactor/static-conversion`
+**Status:** Approved
+**Branch/worktree:** create `refactor/static-conversion` from `main` in a dedicated worktree
 
 ## Problem
 
-Most CSS and JS on the site is inline, making bugs hard to find and fix and
-giving zero reusability. The root cause is deeper than sloppy authoring: the
-pages are **client-side-rendered Claude Design (DC) templates**, and inlined
-styles + bound data are the native output of that authoring system.
+The five public pages are Claude Design (DC) templates rendered in the browser by
+`support.js`, React, ReactDOM, and Babel from `unpkg.com`. The templates depend on
+DC-only elements and bindings:
 
-Each page (`index.html`, `Lien_He.html`,
-`Khai_Van_Hieu_Suat_Thuc_Chien.html`, `Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.html`,
-`Khai-Van_Quan_Tri_Chuyen_Nghiep.html`) is an `<x-dc>` template rendered in the
-browser by `support.js` + React (loaded from `unpkg.com`). It uses DC
-constructs: `<dc-import>` (partials), `<sc-for>` + `{{ }}` (loops/interpolation
-bound to a `renderVals()` data block), `style-hover="..."`, and `<image-slot>`.
+- `<dc-import>` for the shared header and footer;
+- `<sc-for>`, `<sc-if>`, and `{{ ... }}` for content and conditional rendering;
+- `onClick`, `onSubmit`, `style-hover`, `data-html`, and component state;
+- `<image-slot>` and its editor/runtime script;
+- page-local animation, responsive CSS, and interaction code inside
+  `<script type="text/x-dc">`.
 
-## Decisions (locked during brainstorming)
+The current implementation is difficult to debug, slow to start, dependent on a
+third-party runtime, and dominated by inline CSS. A direct one-pass rewrite would
+mix runtime removal, behavior replacement, responsive migration, and CSS cleanup,
+making visual regressions hard to isolate.
 
-1. **Source of truth = this repo.** Claude Design is abandoned; `/design-sync`
-   is retired. We are free to restructure the HTML.
-2. **Full static conversion.** Drop the DC runtime and the React CDN dependency.
-   Every page becomes plain static HTML with external CSS/JS. Benefits: faster,
-   better SEO, debuggable, reusable.
-3. **Lightweight build script** assembles pages from shared partials + a layout,
-   emitting complete static HTML. No SSG framework (no Astro/11ty/Vite), no npm
-   dependency — a zero-dependency Node script (`build.mjs`).
-4. **Plain hand-written CSS.** Tailwind is not actually used (no build, no
-   compiled output; `tailwind.config.js` was only a token reference).
+## Locked decisions
 
-## Guiding principle: pixel-parity refactor
+1. The repository becomes the source of truth. Claude Design sync is retired.
+2. Public output is plain static HTML. No React, Babel, DC runtime, or production
+   dependency on `unpkg.com` remains.
+3. The build remains zero-dependency and uses Node standard-library APIs only.
+4. Root output filenames and extensionless internal URLs remain unchanged.
+5. The final result has pixel parity at desktop and mobile widths. Content and
+   interactions remain unchanged.
+6. Brand tokens remain locked to `DESIGN.md` and `css/gowise.css`.
+7. The migration uses the **parity-first, two-layer approach** described below.
+8. `CLAUDE.md` and `DESIGN.md` become tracked project documentation instead of
+   ignored local files.
 
-Every page must render **identically** to today — same layout, colors, fonts,
-spacing, and animations. This task changes *how the code is organized*, not
-*what it looks like*. Any visual improvement is explicitly out of scope and a
-separate future task.
+## Chosen migration strategy
+
+Each page is migrated through two separately verified layers:
+
+### Layer A: static parity
+
+- Capture the original page at every meaningful UI state.
+- Remove DC/React rendering while retaining the page root id, DOM order, page
+  scope, content, responsive behavior, and visible styling.
+- Move the page's `<style>` block to an external page stylesheet without trying
+  to deduplicate it yet.
+- Replace DC state with small vanilla-JS controllers.
+- Verify desktop, mobile, content, and interactions before proceeding.
+
+### Layer B: CSS consolidation
+
+- Replace inline styles with semantic or page-scoped classes.
+- Promote genuinely repeated patterns into `css/gowise.css`.
+- Keep unique rules in `css/pages/<page>.css`.
+- Re-run the same screenshot and interaction checks.
+
+This order isolates behavioral conversion from styling cleanup. If a regression
+appears, the commit that introduced it is small and the cause is clear.
 
 ## Target structure
 
-```
-src/                          ← hand-edited source
-├── layout.html               shared skeleton: <head>, analytics, css/js links,
-│                             header + footer include slots, {{title}} etc.
+```text
+src/
+├── layout.html
 ├── partials/
-│   ├── header.html           converted from Header.dc.html (no DC)
-│   └── footer.html           converted from Footer.dc.html (no DC)
+│   ├── header.html
+│   └── footer.html
 └── pages/
-    ├── index.html            front-matter (title/description/canonical/og) + static body
+    ├── index.html
     ├── Lien_He.html
     ├── Khai_Van_Hieu_Suat_Thuc_Chien.html
     ├── Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.html
     └── Khai-Van_Quan_Tri_Chuyen_Nghiep.html
-css/
-├── gowise.css                tokens + base + component classes (grown from brand/gowise.css)
-└── pages/*.css               only for genuinely one-off page styles (avoid if possible)
-js/
-├── reveal.js                 scroll-reveal + count-up + data-svg injection
-└── image-slot.js             (see "image-slot" below)
-build.mjs                     zero-dep Node build: layout + partials + page → root *.html
 
-index.html, Lien_He.html, …   ← BUILT output at repo root (served by GitHub Pages; committed)
+css/
+├── gowise.css
+└── pages/
+    ├── index.css
+    ├── contact.css
+    ├── workshop.css
+    ├── performance-coach.css
+    └── management-coach.css
+
+js/
+├── reveal.js
+├── nav.js
+├── contact.js
+└── program-ui.js
+
+tests/
+├── build.test.mjs
+├── static-contract.test.mjs
+└── fixtures/
+    ├── reveal.html
+    ├── nav.html
+    ├── program-ui.html
+    └── contact.html
+
+build.mjs
+
+index.html
+Lien_He.html
+Khai_Van_Hieu_Suat_Thuc_Chien.html
+Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.html
+Khai-Van_Quan_Tri_Chuyen_Nghiep.html
 ```
 
-- Root output filenames stay identical, and extensionless internal links
-  (`href="Lien_He"`, `href="./"` for home) are preserved — **no URLs change**.
-- Both `src/` and the built root `*.html` are committed. GitHub Pages serves the
-  built files directly; `build.mjs` is run locally before commit (no CI).
+`src/`, `css/`, `js/`, `tests/`, `build.mjs`, and built root pages are tracked.
+GitHub Pages continues serving the committed root HTML.
 
-## Build script contract (`build.mjs`)
+## Build contract
 
-- Zero external dependencies (Node stdlib only).
-- Reads `src/layout.html`, `src/partials/*.html`, and each `src/pages/*.html`.
-- Each page source has a small front-matter block (title, description,
-  canonical, ogImage, and any extra per-page `<head>` bits) plus a body of pure
-  static HTML.
-- Substitutes front-matter values + injects header/footer partials into the
-  layout, writes the finished page to the repo root under the same filename.
-- Include mechanism: simple, explicit tokens (e.g. `{{title}}`, `{{content}}`,
-  `{{> header }}`) — chosen concretely during planning; must be unambiguous and
-  documented in a short comment at the top of `build.mjs`.
+`build.mjs` exports testable parsing, rendering, validation, and build functions,
+and also acts as the `node build.mjs` CLI.
 
-## What gets removed (after all pages pass)
+For every `src/pages/*.html` file whose name does not start with `_`, it:
 
-- `support.js` (DC/React runtime) and the React/unpkg CDN loads
-- `fix-dc.sh`
-- `tailwind.config.js`
-- `.image-slots.state.json`
-- `.claude/design-sync.json` + the `/design-sync` workflow references
-- All DC constructs: `<x-dc>`, `<dc-import>`, `<sc-for>`, `{{ }}`,
-  `style-hover`, `data-dc-script`
-- `Header.dc.html` / `Footer.dc.html` (replaced by `src/partials/*.html`)
-- `CLAUDE.md` / `DESIGN.md` references to the DC/sync workflow are updated to
-  describe the new static build instead.
+1. parses one leading HTML-comment front-matter block;
+2. rejects duplicate or missing required metadata;
+3. injects header and footer partials into the layout;
+4. replaces only documented layout placeholders;
+5. renders every page in memory;
+6. validates every result before writing any root output;
+7. writes all validated pages under their unchanged basenames.
 
-## CSS work (the bulk of the effort)
+Required metadata: `title`, `description`, `canonical`, and `ogImage`.
+Optional metadata: `ogTitle`, `bodyClass`, and a single-line `headExtra` value.
 
-Convert the ~840 inline `style="..."` attributes across the 5 pages into
-semantic classes:
+The build fails if output contains any of the following:
 
-- **Repeated patterns become reusable classes in `gowise.css`** — the gold
-  gradient button, dark/light cards, eyebrows, icon rings, stat pills, section
-  shells, reveal classes, keyframes. This is exactly what `DESIGN.md` §2–3 and
-  `CLAUDE.md` already mandate (`.gp-btn`, `.gp-card-dark/-light`, `.gp-eyebrow`,
-  `.gp-icon-ring`, `.gp-reveal`, …).
-- **Design tokens** (colors, fonts, radii, gradients from `DESIGN.md`) are
-  expressed as CSS custom properties in `gowise.css`; no new tokens invented,
-  gold stays ≤ 10% of surface.
-- `style-hover="..."` → real CSS `:hover` rules.
-- Genuinely unique one-offs → page-scoped classes (prefer reuse first).
+- unresolved `{{...}}` placeholders;
+- `<x-dc>`, `<dc-import>`, `<sc-for>`, or `<sc-if>`;
+- `style-hover`, `data-dc-script`, DC-bound event handlers, or `data-html`;
+- references to `support.js`, `image-slot.js`, React, Babel, or `unpkg.com`.
 
-## JS work
+`data-svg` remains supported. SVG stored in an HTML attribute must be
+entity-encoded so `getAttribute('data-svg')` returns valid SVG markup.
 
-- Extract the per-page `class Component extends DCLogic` logic (the `initAnim`
-  routine: `data-svg` injection, `[data-stagger]` delays, IntersectionObserver
-  scroll-reveal, count-up) into a single shared `js/reveal.js` that runs on
-  `DOMContentLoaded`. No React.
-- Respect `prefers-reduced-motion` exactly as today.
-- `data-svg` → `innerHTML` injection pattern is **kept** (documented in
-  `CLAUDE.md` §10); `reveal.js` performs the injection on load.
-- `renderVals()` data (clients, articles, leads, experts) is rendered directly
-  into static HTML at authoring/build time — `<sc-for>` loops expand to static
-  markup.
+## CSS architecture
 
-## image-slot decision
+### Shared layer
 
-Replace `<image-slot src="...">` with plain `<img loading="lazy">`. The images
-are already chosen; the slot component's editor/credit machinery is dead weight
-in production. `image-slot.js` (56 KB) is then removed. (Reversible: keep
-`image-slot.js` if credit overlays are later wanted — it is a standalone web
-component, not DC-dependent.)
+`css/gowise.css` contains:
 
-## Migration order (incremental, verified each step)
+- brand tokens copied from `brand/gowise.css`;
+- reset and global base rules;
+- shared typography, section, card, button, icon, reveal, and animation classes;
+- complete header and footer styling;
+- shared reduced-motion rules.
 
-1. Create git worktree + branch `refactor/static-conversion`; scaffold `src/`,
-   `build.mjs`, and the css/js skeleton.
-2. Convert **`index.html` first** (reference page). Build → verify in browser:
-   screenshot matches current, zero console errors, and **no unpkg/React network
-   requests**.
-3. Convert the remaining 4 pages one at a time, reusing and growing
-   `gowise.css` component classes each time.
-4. Delete the DC runtime & sync machinery once all 5 pages pass.
-5. Final pass: verify all 5 pages + mobile/responsive (and dark sections)
-   against the originals.
+Shared partials contain no `style` attributes and no hard-coded colors.
 
-## Verification strategy
+### Page layer
 
-- Per page: side-by-side screenshot vs the pre-refactor original at desktop and
-  mobile widths; browser console clean; network panel shows no React/unpkg/CDN
-  calls; scroll-reveal + count-up animations fire.
-- Keep the pre-refactor originals available (git history / the untouched `main`)
-  for comparison until the whole conversion is signed off.
+Each page keeps a stable root id during the migration:
 
-## Risks & mitigations
+- `#gp-root`
+- `#lh-root`
+- `#kv-root`
+- `#hpc-root`
+- `#mc-root`
 
-- **Visual regression** (biggest risk): mitigated by strict one-page-at-a-time
-  conversion with before/after screenshot comparison and pixel-parity as the
-  acceptance bar.
-- **Missed DC behavior** (e.g. a subtle bound value): mitigated by converting
-  the reference page first and diffing rendered output.
-- **Broken internal links**: mitigated by preserving exact root filenames and
-  extensionless href convention.
+The first static-parity commit moves each original `<style>` block into the
+matching page stylesheet. Responsive selectors that currently depend on inline
+style substrings are replaced with explicit layout classes before those inline
+styles are removed.
+
+Final page sources contain no DC attributes and no `style-hover`. Repeated inline
+styles are eliminated; unique styling lives in page-scoped classes rather than
+being left in shared partials.
+
+## Behavior architecture
+
+### `js/reveal.js`
+
+Responsible only for:
+
+- entity-decoded `data-svg` injection;
+- reveal observation;
+- stagger delays;
+- count-up animation;
+- reduced-motion and IntersectionObserver fallbacks.
+
+Per-element configuration preserves existing page differences:
+
+- `data-stagger-ms`, default `75`;
+- `data-count-duration`, default `900`;
+- `data-count-format="grouped|plain"`, default `grouped`.
+
+All old `.rv`, `.rv-l`, and `.rv-r` classes are mapped to `.gp-reveal`,
+`.gp-reveal--l`, and `.gp-reveal--r` during static conversion.
+
+### `js/nav.js`
+
+Controls desktop dropdown, mobile navigation, mobile program submenu, and active
+link highlighting. It preserves the 18px hover bridge between the desktop
+trigger and menu, updates `aria-expanded`, closes on Escape/outside click, and
+resets mobile state when resizing to desktop.
+
+### `js/program-ui.js`
+
+Controls both program-page interaction patterns using data attributes:
+
+- `[data-tabs]`, `[data-tab]`, and `[data-panel]` for module switching;
+- `[data-accordion]`, `[data-accordion-trigger]`, and
+  `[data-accordion-panel]` for FAQ toggles.
+
+All module and FAQ content is present in static HTML. JavaScript changes hidden,
+active, and ARIA state; it never fetches or constructs content at runtime.
+
+### `js/contact.js`
+
+Preserves the current Web3Forms endpoint, field names, captcha client script,
+loading state, success message, error message, and form reset behavior. Browser
+verification intercepts the submit request and returns controlled success/error
+responses; it does not create a real production lead.
+
+## Static conversion rules
+
+1. Copy metadata verbatim into front matter.
+2. Preserve the page root id and meaningful section ids.
+3. Remove imported DC header/footer elements.
+4. Expand every `sc-for` using the complete corresponding data collection.
+5. Evaluate every `sc-if` explicitly. For interactive content, render all states
+   as separate static panels and let `program-ui.js` control visibility.
+6. Replace `data-html` with real child markup.
+7. Entity-encode `data-svg` values.
+8. Replace `image-slot` with an `<img>` that preserves source, fit, position,
+   dimensions, and accessible alternative text. Above-the-fold hero images are
+   eager; below-the-fold images are lazy.
+9. Replace DC event attributes with the documented `data-*` contracts.
+10. Preserve third-party page dependencies that are still required, including
+    the Web3Forms captcha client.
+11. Remove all DC scripts only after their content and behavior have an explicit
+    static equivalent.
+
+## Verification gates
+
+### Automated build tests
+
+Node's built-in `node:test` verifies:
+
+- metadata parsing and duplicate-key errors;
+- required-key errors and `ogTitle` fallback;
+- include and placeholder replacement;
+- private `_` fixture exclusion;
+- unknown placeholder rejection;
+- DC-token rejection;
+- validate-all-before-write behavior;
+- exact output basenames.
+
+### Static contract checks
+
+Every built page must:
+
+- have one title, canonical URL, description, and OG image;
+- reference existing local CSS, JS, and image assets;
+- contain no DC/runtime artifacts;
+- preserve the required root filename and internal-link convention.
+
+### Browser checks
+
+For each page:
+
+- capture full-page screenshots at 1280×900 and 390×844;
+- wait for `document.fonts.ready` and images before capture;
+- use reduced motion for deterministic screenshot comparison;
+- separately test normal-motion reveal and count-up behavior;
+- require zero console errors;
+- require no React, Babel, `unpkg.com`, or `support.js` requests.
+
+Interaction coverage includes desktop/mobile nav, every module tab, every FAQ
+item, reduced motion, contact captcha validation, mocked successful submission,
+and mocked failed submission.
+
+## Migration order
+
+1. Create the worktree and capture all visual/behavior baselines.
+2. Build the tested static assembler and validation contracts.
+3. Add shared CSS, layout, header/footer, and behavior controllers using fixtures.
+4. Convert `index.html` through Layer A and Layer B.
+5. Convert `Khai_Van_Hieu_Suat_Thuc_Chien.html` through both layers.
+6. Convert `Lien_He.html`, including mocked form verification.
+7. Convert `Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.html`, including all module states.
+8. Convert `Khai-Van_Quan_Tri_Chuyen_Nghiep.html`, including tabs and FAQ states.
+9. Remove runtime and sync machinery, then update tracked documentation.
+10. Run the full automated, static, browser, and visual verification matrix.
+
+## Cleanup policy
+
+Tracked runtime files are removed with `git rm`. Ignored local tooling is removed
+separately only after checking that it exists. The cleanup does not use one mixed
+`git rm` command that can fail because a path is untracked or absent.
+
+The root `tailwind.config.js` is not part of the current repository. The ignored
+development reference is `brand/tailwind.config.js`; it may remain under the
+ignored `brand/` directory. Obsolete ignored files such as `fix-dc.sh`,
+`.claude/design-sync.json`, and `.claude/commands/design-sync.md` are removed from
+the worktree separately.
+
+`.gitignore` stops ignoring `CLAUDE.md`, `DESIGN.md`, and `fix-dc.sh`. It continues
+ignoring `.claude/`, `brand/`, screenshots, uploads, and local OS artifacts.
+
+## Risks and mitigations
+
+- **Visual drift:** two-layer, per-page verification isolates each styling change.
+- **Lost conditional content:** explicit `sc-if` inventory plus build rejection of
+  leftover DC tags prevents silent loss.
+- **Lost interaction:** all stateful DC behavior has a named vanilla-JS owner and
+  an interaction test matrix.
+- **Broken captcha:** the Web3Forms client remains and network calls are mocked in
+  verification.
+- **Partial output:** all pages validate before any build output is written.
+- **Uncommitted documentation:** project docs become tracked before cleanup commit.
 
 ## Out of scope
 
-- Any visual/design change (separate future task).
-- Content edits.
-- Adding a CI/CD pipeline or SSG framework.
-- SEO work beyond what static rendering yields for free.
+- visual redesign or content editing;
+- changing public URLs;
+- replacing Web3Forms;
+- adding an SSG framework, npm runtime packages, CI/CD, or deployment automation;
+- changing brand tokens or introducing a new design system.
