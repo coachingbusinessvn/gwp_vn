@@ -1,2 +1,22 @@
 /.od-skills
 .DS_Store
+
+# Dev/authoring tooling - not needed to serve GitHub Pages
+/.claude/
+CLAUDE.md
+DESIGN.md
+fix-dc.sh
+/brand/
+/screenshots/
+/uploads/
+
+# Unused logo variants and raw/source images not referenced by any page
+assets/about.png
+assets/logo-mark-black.png
+assets/logo-mark-gold.png
+assets/logo-mark-golden.png
+assets/logo-mark-navy.png
+assets/logo-mark-white.png
+images/social_index-2.jpg
+images/social_*.JPG
+images/1_2QK01047.JPG
