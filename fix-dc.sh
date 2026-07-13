@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
-# fix-dc.sh — Make a .dc.html file downloaded from Claude design work on GitHub Pages.
+# fix-dc.sh — Make a file exported from Claude design work on GitHub Pages.
+#
+# Top-level pages are renamed from *.dc.html to *.html for clean URLs (GitHub
+# Pages auto-resolves /PageName -> PageName.html, but not PageName.dc.html).
+# Header.dc.html/Footer.dc.html stay *.dc.html — support.js's <dc-import>
+# fetches them by that exact hardcoded suffix, they're never navigated to
+# directly, so they don't need clean URLs.
 #
 # Usage:
-#   ./fix-dc.sh <file.dc.html>          # fix a specific file
-#   ./fix-dc.sh                          # fix ALL *.dc.html in current directory
+#   ./fix-dc.sh <file>          # fix a specific file (.html or .dc.html)
+#   ./fix-dc.sh                  # fix ALL *.dc.html in current directory
 
 set -euo pipefail
 
@@ -29,35 +35,7 @@ fix_file() {
     echo "  ⚠ WARNING: no <x-dc> found — this may not be a valid Claude design file."
   fi
 
-  # 3. If this file is index.dc.html, create/verify index.html redirect
-  local BASENAME
-  BASENAME="$(basename "$FILE")"
-  local DIR
-  DIR="$(dirname "$FILE")"
-
-  if [[ "$BASENAME" == "index.dc.html" ]]; then
-    local INDEX="$DIR/index.html"
-    if [[ ! -f "$INDEX" ]]; then
-      cat > "$INDEX" << 'EOF'
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script>window.location.replace('index.dc.html');</script>
-<noscript><meta http-equiv="refresh" content="0; url=index.dc.html"></noscript>
-</head>
-<body></body>
-</html>
-EOF
-      echo "  + created index.html redirect"
-      FIXED=1
-    else
-      echo "  ✓ index.html exists"
-    fi
-  fi
-
-  # 4. Ensure .nojekyll exists so GitHub Pages doesn't ignore _files
+  # 3. Ensure .nojekyll exists so GitHub Pages doesn't ignore _files
   local NOJEKYLL="$SCRIPT_DIR/.nojekyll"
   if [[ ! -f "$NOJEKYLL" ]]; then
     touch "$NOJEKYLL"

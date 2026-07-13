@@ -6,7 +6,7 @@
 Files in this pack:
 - `brand/gowise.css` — framework-free brand stylesheet (link it directly).
 - `brand/tailwind.config.js` — Tailwind v3 config + Play-CDN `extend` object.
-- Reference build: `Khai Van Hieu Suat Thuc Chien.dc.html`.
+- Reference build: `Khai_Van_Hieu_Suat_Thuc_Chien.html`.
 
 ---
 
