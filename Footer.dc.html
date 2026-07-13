@@ -18,6 +18,10 @@
   @media (max-width: 820px) {
     #gp-ftr .gp-fgrid { grid-template-columns: 1fr; gap: 34px; }
     #gp-ftr .gp-fbottom { flex-direction: column; text-align: center; }
+    /* Vùng chạm lớn hơn cho link footer trên mobile (tối thiểu ~44px) */
+    #gp-ftr .gp-flink { display: inline-block; padding: 9px 0; }
+    #gp-ftr .gp-fsocial { gap: 6px !important; margin: -6px 0; }
+    #gp-ftr .gp-fsocial a { padding: 12px 10px; }
   }
 </style>
 </helmet>
@@ -46,7 +50,7 @@
           <span style="color: #8193A4; font-size: 13px;"> · Mr. Huy</span>
         </div>
         <a href="mailto:info@gwp.vn" class="gp-flink">info@gwp.vn</a>
-        <div style="display: flex; gap: 18px; margin-top: 4px;">
+        <div class="gp-fsocial" style="display: flex; gap: 18px; margin-top: 4px;">
           <a href="#" class="gp-flink" style="font-size: 13px;">LinkedIn</a>
           <a href="#" class="gp-flink" style="font-size: 13px;">Facebook</a>
           <a href="#" class="gp-flink" style="font-size: 13px;">YouTube</a>
