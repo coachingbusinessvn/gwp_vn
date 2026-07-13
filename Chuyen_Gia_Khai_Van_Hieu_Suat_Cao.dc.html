@@ -28,6 +28,7 @@
   .rv-l { transform: translateX(-32px); }
   .rv-r { transform: translateX(32px); }
   .rv-l.in, .rv-r.in { transform: none; }
+  #hpc-root h1, #hpc-root h2 { text-wrap: balance; }
   @media (prefers-reduced-motion: reduce) { .rv { transition: none; } }
 
   /* ---- Mobile responsive (added) ---- */
@@ -236,7 +237,7 @@
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
       <div class="rv" style="text-align: center; max-width: 700px; margin: 0 auto 56px;">
         <div style="font-size: 12px; letter-spacing: 0.24em; color: #C9A668; font-weight: 600; margin-bottom: 20px;">ĐỘI NGŨ DIỄN GIẢ</div>
-        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 42px; line-height: 1.45; color: #F7F1E7; text-wrap: balance;">Những chuyên gia <span style="color: #E7D0A2;">dẫn dắt chương trình</span></h2>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 42px; line-height: 1.45; color: #F7F1E7;">Những chuyên gia <span style="color: #E7D0A2;">dẫn dắt chương trình</span></h2>
       </div>
 
       <!-- PRIMARY: Mạnh Hà -->
@@ -244,7 +245,7 @@
         <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #E7D0A2, #C9A668);"></div>
         <div style="display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-weight: 700; font-size: 12px; letter-spacing: 0.14em; padding: 8px 18px; margin-bottom: 32px;">★ DIỄN GIẢ</div>
         <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; align-items: start;">
-          <div style="position: relative;">
+          <div style="position: relative; min-width: 0;">
             <div style="border-radius: 18px; overflow: hidden; border: 1px solid rgba(201,166,104,0.3); aspect-ratio: 3/4;">
               <image-slot id="hpc-coach-manhha" src="images/coach-manh-ha.jpeg" shape="rect" fit="cover" placeholder="Coach Nguyễn Vũ Mạnh Hà"></image-slot>
             </div>
@@ -287,7 +288,7 @@
         <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #B98A48, #12304C);"></div>
         <div style="display: inline-flex; align-items: center; gap: 7px; background: rgba(201,166,104,0.12); border: 1px solid rgba(201,166,104,0.28); color: #C9A668; font-weight: 700; font-size: 11.5px; letter-spacing: 0.16em; padding: 8px 16px; margin-bottom: 32px;">SUPPERVISOR</div>
         <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; align-items: start;">
-          <div style="position: relative;">
+          <div style="position: relative; min-width: 0;">
             <div style="border-radius: 18px; overflow: hidden; border: 1px solid rgba(201,166,104,0.28); aspect-ratio: 3/4;">
               <image-slot id="hpc-coach-thuha" src="images/hpc_team_ha_bui.jpeg" shape="rect" fit="cover" placeholder="Coach Bùi Thị Thu Hà"></image-slot>
             </div>
