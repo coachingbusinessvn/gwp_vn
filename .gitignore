@@ -1,4 +1,5 @@
 /.od-skills
+/.worktrees/
 .DS_Store
 
 # Dev/authoring tooling - not needed to serve GitHub Pages
