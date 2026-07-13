@@ -37,6 +37,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
   body { background: #07121F; }
   ::selection { background: #C9A668; color: #07121F; }
   a { color: #D7B16E; text-decoration: none; }
@@ -82,7 +83,7 @@
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
-<div id="gp-root" style="font-family: Montserrat, system-ui, sans-serif; color: #D9E0E7; background: #07121F; overflow-x: hidden;">
+<div id="gp-root" style="font-family: Montserrat, system-ui, sans-serif; color: #D9E0E7; background: #07121F;">
 
   <!-- ============ HEADER (shared) ============ -->
   <dc-import name="Header" hint-size="100%,78px"></dc-import>
@@ -112,11 +113,11 @@
         </div>
         <div style="position: absolute; top: 8px; right: 6px; background: rgba(7,18,31,0.72); backdrop-filter: blur(6px); border: 1px solid rgba(201,166,104,0.35); padding: 14px 18px; animation: gpFloat 6s ease-in-out infinite;">
           <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: #E7D0A2; line-height: 1;">13+</div>
-          <div style="font-size: 10px; letter-spacing: 0.16em; color: #8193A4; margin-top: 5px;">NĂM KINH NGHIỆM</div>
+          <div style="font-size: 10px; letter-spacing: 0.16em; color: #8193A4; margin-top: 5px; white-space: nowrap;">NĂM KINH NGHIỆM</div>
         </div>
         <div style="position: absolute; bottom: 6px; left: 0; background: rgba(13,27,42,0.9); border: 1px solid rgba(201,166,104,0.3); padding: 14px 18px; animation: gpFloatSlow 8s ease-in-out infinite;">
           <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: #E7D0A2; line-height: 1;">300+</div>
-          <div style="font-size: 10px; letter-spacing: 0.16em; color: #8193A4; margin-top: 5px;">CHUYÊN GIA ĐƯỢC ĐÀO TẠO</div>
+          <div style="font-size: 10px; letter-spacing: 0.12em; color: #8193A4; margin-top: 5px; white-space: nowrap;">CHUYÊN GIA ĐƯỢC ĐÀO TẠO</div>
         </div>
       </div>
     </div>
