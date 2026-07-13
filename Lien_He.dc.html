@@ -63,7 +63,10 @@
         <div style="font-size: 12px; letter-spacing: 0.2em; color: #C9A668; font-weight: 600; margin-bottom: 10px;">GỬI YÊU CẦU TƯ VẤN</div>
         <h2 style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 26px; color: #F7F1E7; line-height: 1.4; margin-bottom: 28px;">Đặt lịch tham vấn 1:1</h2>
 
-        <form onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: 20px;">
+        <form action="https://api.web3forms.com/submit" method="POST" onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: 20px;">
+          <input type="hidden" name="access_key" value="51b8aeaa-fddc-4d63-b10b-b404fa3443e6">
+          <input type="hidden" name="subject" value="Yêu cầu tham vấn mới từ website GWP">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display: none;">
           <div class="lh-form-row">
             <div>
               <label style="display: block; font-size: 11px; letter-spacing: 0.14em; color: #B98A48; font-weight: 600; text-transform: uppercase; margin-bottom: 9px;">Họ và tên *</label>
@@ -101,11 +104,18 @@
             <textarea name="message" rows="4" placeholder="Chia sẻ ngắn gọn bài toán hoặc mục tiêu bạn đang theo đuổi…"></textarea>
           </div>
 
+          <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
+
           <button type="submit" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-family: Montserrat, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; padding: 16px 30px; border: 0; cursor: pointer; transition: filter 0.2s, transform 0.2s;" style-hover="filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,166,104,0.28);">Gửi yêu cầu tư vấn <span style="font-size: 15px;">→</span></button>
 
           <div id="lh-thanks" style="display: none; align-items: center; gap: 12px; margin-top: 4px; padding: 16px 18px; background: rgba(201,166,104,0.08); border: 1px solid rgba(201,166,104,0.3); border-radius: 10px; color: #E7D0A2; font-size: 14px; line-height: 1.5;">
             <span style="font-size: 18px;">✓</span>
             <span>Cảm ơn bạn! Yêu cầu đã được ghi nhận. GoWise Partners sẽ liên hệ trong vòng 24 giờ làm việc.</span>
+          </div>
+
+          <div id="lh-error" style="display: none; align-items: center; gap: 12px; margin-top: 4px; padding: 16px 18px; background: rgba(129,147,164,0.08); border: 1px solid rgba(129,147,164,0.3); border-radius: 10px; color: #D9E0E7; font-size: 14px; line-height: 1.5;">
+            <span style="font-size: 18px;">⚠</span>
+            <span>Có lỗi xảy ra, yêu cầu chưa được gửi. Vui lòng thử lại hoặc liên hệ trực tiếp qua Hotline/Zalo.</span>
           </div>
         </form>
       </div>
@@ -167,11 +177,41 @@ class Component extends DCLogic {
     root.querySelectorAll('.rv').forEach((el) => io.observe(el));
   }
 
-  submit(e) {
+  async submit(e) {
     e.preventDefault();
-    const t = document.getElementById('lh-thanks');
-    if (t) t.style.display = 'flex';
-    try { e.target.querySelectorAll('input, textarea, select').forEach((f) => { if (f.type !== 'submit') f.value = ''; }); } catch (err) {}
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const thanks = document.getElementById('lh-thanks');
+    const error = document.getElementById('lh-error');
+    const errorText = error ? error.querySelector('span:last-child') : null;
+    const defaultErrorMsg = errorText ? errorText.textContent : '';
+    const showError = (msg) => { if (errorText) errorText.textContent = msg || defaultErrorMsg; if (error) error.style.display = 'flex'; };
+    if (thanks) thanks.style.display = 'none';
+    if (error) error.style.display = 'none';
+    const captchaField = form.querySelector('textarea[name="h-captcha-response"]');
+    if (form.querySelector('.h-captcha') && !(captchaField && captchaField.value)) {
+      showError('Vui lòng hoàn thành xác minh captcha trước khi gửi.');
+      return;
+    }
+    if (btn) { btn.disabled = true; btn.style.opacity = '0.65'; btn.style.cursor = 'wait'; }
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        if (thanks) thanks.style.display = 'flex';
+        form.reset();
+      } else {
+        showError();
+      }
+    } catch (err) {
+      showError();
+    } finally {
+      if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = ''; }
+    }
   }
 
   renderVals() {
@@ -188,5 +228,6 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
