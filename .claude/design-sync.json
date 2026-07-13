@@ -1,0 +1,18 @@
+{
+  "project": {
+    "name": "GWP Webiste",
+    "projectId": "de9fe42c-6b32-4860-aaf8-b8223eccaf0e",
+    "url": "https://claude.ai/design/p/de9fe42c-6b32-4860-aaf8-b8223eccaf0e",
+    "type": "PROJECT_TYPE_PROJECT"
+  },
+  "syncFiles": [
+    "index.dc.html",
+    "Khai_Van_Hieu_Suat_Thuc_Chien.dc.html",
+    "Chuyen_Gia_Khai_Van_Hieu_Suat_Cao.dc.html",
+    "Khai-Van_Quan_Tri_Chuyen_Nghiep.dc.html",
+    "Lien_He.dc.html",
+    "Header.dc.html",
+    "Footer.dc.html"
+  ],
+  "notes": "Files are 1:1 same relative path in the Claude Design project and in this repo. Pull direction only (design -> local); DesignSync's write_files/finalize_plan flow is for the opposite direction (local -> design) and is not used here."
+}
