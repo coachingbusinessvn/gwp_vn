@@ -51,7 +51,7 @@
   .gp-reveal--l { transform: translateX(-32px); }
   .gp-reveal--r { transform: translateX(32px); }
   .gp-reveal--l.in, .gp-reveal--r.in { transform: none; }
-  .gp-lead-img { aspect-ratio: 3 / 4; }
+  .gp-lead-img { height: 100%; }
   @media (prefers-reduced-motion: reduce) {
     .gp-reveal, .gp-reveal--l, .gp-reveal--r { opacity: 1 !important; transform: none !important; transition: none; }
     [style*="gpSpin"], [style*="gpFloat"] { animation: none !important; }
@@ -64,6 +64,7 @@
     .gp-3col { grid-template-columns: 1fr 1fr !important; }
     .gp-experts-grid { grid-template-columns: repeat(3, 1fr) !important; }
     .gp-lead-card { grid-template-columns: 1fr !important; }
+    .gp-lead-img { height: auto !important; aspect-ratio: 3 / 4; }
   }
   @media (max-width: 640px) {
     .gp-3col { grid-template-columns: 1fr !important; }
