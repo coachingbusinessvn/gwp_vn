@@ -50,17 +50,22 @@
     background: #0D1B2A; border: 1px solid rgba(201,166,104,0.2); border-radius: 8px;
     padding: 14px 16px; transition: border-color 0.2s, background 0.2s;
   }
+  /* iOS Safari tự zoom trang khi focus input có font < 16px — ép 16px trên mobile */
+  @media (max-width: 560px) {
+    #lh-root input, #lh-root select, #lh-root textarea { font-size: 16px; }
+  }
   #lh-root input::placeholder, #lh-root textarea::placeholder { color: #5f7183; }
   #lh-root input:focus, #lh-root select:focus, #lh-root textarea:focus { outline: none; border-color: #C9A668; background: #102338; }
   #lh-root select { appearance: none; -webkit-appearance: none; cursor: pointer; }
   #lh-root .lh-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; }
   #lh-root .lh-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 900px) {
-    #lh-root .lh-grid { grid-template-columns: 1fr; gap: 44px; }
+    #lh-root .lh-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
     #lh-root .lh-hero-pad { padding-top: 56px !important; padding-bottom: 40px !important; }
   }
   @media (max-width: 560px) {
     #lh-root .lh-form-row { grid-template-columns: 1fr; }
+    #lh-root .lh-form-card { padding: 28px 22px 26px !important; }
   }
   @media (prefers-reduced-motion: reduce) { .rv { opacity: 1 !important; transform: none !important; } }
 </style>
@@ -83,7 +88,7 @@
     <div class="lh-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
 
       <!-- FORM -->
-      <div class="rv" style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.18); border-radius: 18px; padding: 44px 44px 40px;">
+      <div class="rv lh-form-card" style="background: #0D1B2A; border: 1px solid rgba(201,166,104,0.18); border-radius: 18px; padding: 44px 44px 40px;">
         <div style="font-size: 12px; letter-spacing: 0.2em; color: #C9A668; font-weight: 600; margin-bottom: 10px;">GỬI YÊU CẦU TƯ VẤN</div>
         <h2 style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 26px; color: #F7F1E7; line-height: 1.4; margin-bottom: 28px;">Đặt lịch tham vấn 1:1</h2>
 
