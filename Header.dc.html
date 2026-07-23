@@ -50,6 +50,8 @@
         </div>
       </div>
 
+      <a href="guidebookcoachinghieusuatcaogowisepartners" class="gp-navlink" data-nav="guidebook">GUIDE BOOK</a>
+
       <a href="Lien_He" class="gp-navlink" data-nav="contact">LIÊN HỆ</a>
     </nav>
 
@@ -75,6 +77,7 @@
       <a href="Khai-Van_Quan_Tri_Chuyen_Nghiep" style="color: #B7C2CE; font-size: 13.5px; padding: 11px 0; line-height: 1.4;">Chuyên gia Khai vấn Quản trị</a>
       <a href="Khai_Van_Hieu_Suat_Thuc_Chien" style="color: #B7C2CE; font-size: 13.5px; padding: 11px 0; line-height: 1.4;">WS Khai vấn Hiệu suất cao thực chiến</a>
     </div>
+    <a href="guidebookcoachinghieusuatcaogowisepartners" class="gp-navlink" style="display: block; padding: 15px 0; border-bottom: 1px solid rgba(201,166,104,0.1); font-size: 15px;">GUIDE BOOK</a>
     <a href="Lien_He" class="gp-navlink" style="display: block; padding: 15px 0; border-bottom: 1px solid rgba(201,166,104,0.1); font-size: 15px;">LIÊN HỆ</a>
     <a href="Lien_He" style="display: inline-flex; margin-top: 18px; background: linear-gradient(180deg, #E7D0A2, #C9A668); color: #07121F; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 13px 24px;">Đặt lịch tư vấn</a>
   </div>
@@ -91,6 +94,7 @@ class Component extends DCLogic {
       const file = decodeURIComponent((location.pathname.split('/').pop() || '').toLowerCase());
       let key = 'home';
       if (/lien_he|lien-he/.test(file)) key = 'contact';
+      else if (/guidebook/.test(file)) key = 'guidebook';
       else if (/chuyen_gia|quan_tri|thuc_chien|hieu_suat/.test(file)) key = 'train';
       const root = document.getElementById('gp-hdr');
       if (!root) return;
